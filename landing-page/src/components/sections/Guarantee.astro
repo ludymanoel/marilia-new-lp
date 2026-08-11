@@ -1,6 +1,7 @@
 ---
 /**
- * Guarantee — Selo visual + texto persuasivo + âncora de volta à oferta.
+ * Guarantee — Selo visual oficial (SVG) + texto da LP original.
+ * Bloco com imagem real + texto âncora visual.
  */
 import Icon from '../ui/Icon.astro';
 import SectionWrapper from '../ui/SectionWrapper.astro';
@@ -8,31 +9,28 @@ import { guaranteeData } from '../../data/content';
 ---
 
 <SectionWrapper theme="light" ariaLabelledby="guarantee-heading">
-  <article
-    class="max-w-4xl mx-auto grid md:grid-cols-[200px_1fr] gap-8 items-center reveal"
-  >
-    <!-- Selo visual -->
-    <div class="text-center md:text-left">
-      <div
-        class="inline-flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-success-100 to-success-500 shadow-large mx-auto"
-        aria-hidden="true"
-      >
-        <div class="text-center text-success-700">
-          <Icon name="shield-check" size={64} class="mx-auto mb-2" />
-          <div class="font-display font-bold text-sm uppercase leading-tight">
-            {guaranteeData.seal.title}
-          </div>
-          <div class="text-xs font-medium mt-1 text-success-800">
-            {guaranteeData.seal.subtitle}
-          </div>
-        </div>
-      </div>
+  <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center max-w-5xl mx-auto">
+    <!-- Coluna do selo (oficial) -->
+    <div class="text-center reveal">
+      <img
+        src="/images/guarantee-seal.svg"
+        alt="Selo de garantia 7 dias — 100% do seu dinheiro de volta"
+        width="200"
+        height="200"
+        loading="lazy"
+        decoding="async"
+        class="w-48 h-48 md:w-56 md:h-56 mx-auto"
+      />
     </div>
 
-    <!-- Texto -->
-    <div>
+    <!-- Coluna do texto -->
+    <div class="reveal">
+      <span class="badge badge--brand mb-4">
+        <Icon name="shield-check" size={14} />
+        Garantia 7 dias
+      </span>
       <h2 id="guarantee-heading" class="mb-4">
-        {guaranteeData.headline}
+        Risco zero pra você.
       </h2>
       <div class="space-y-3 text-neutral-700 leading-relaxed">
         {guaranteeData.paragraphs.map((paragraph) => (
@@ -48,5 +46,5 @@ import { guaranteeData } from '../../data/content';
         <Icon name="arrow-right" size={18} />
       </a>
     </div>
-  </article>
+  </div>
 </SectionWrapper>

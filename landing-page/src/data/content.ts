@@ -18,8 +18,9 @@ export const siteConfig = {
     current: 697,
     original: 1497,
     installments: 12,
-    installmentValue: 58.08, // 697 / 12 (arredondado)
+    installmentValue: 70.07, // valor oficial da LP antiga
   },
+  paymentMethods: ['Cartão até 12x', 'Boleto', 'PIX'],
   contact: {
     email: 'contato@mariliacordeiro.com',
     instagram: 'https://instagram.com/mariliacordeiro',
@@ -37,29 +38,27 @@ export const siteConfig = {
 } as const;
 
 // ============================================================
-// HERO
-// Tom de voz: acessível, profissional, pragmático, prático, objetivo,
-// resolutivo e sincero. Sem exageros, sem mimimi. Caloroso, não coercivo.
+// HERO — copy alinhada com KV aprovado da LP original
 // ============================================================
 
 export const heroData = {
   eyebrow: 'Método Organização Sincera · +5.000 alunas',
   headline: {
-    line1: 'Organize a caixa.',
-    line2Highlight: 'Pra pensar dentro e fora dela.',
+    line1: 'Produtividade Sincera:',
+    line2Highlight: 'realize seus objetivos e vença a procrastinação, a improdutividade e a sobrecarga.',
   },
   subheadline:
-    'O Método Produtividade Sincera é o passo a passo pra você parar de improvisar a rotina e começar a viver com mais clareza, foco e tempo pro que importa.',
+    'Menos tempo, mais ganhos. Acabe com os problemas de organização na sua vida e no seu negócio em 30 dias. Esqueça tudo o que você aprendeu sobre organização.',
   videoId: 'xnAKf96lepM',
   ctaPrimary: {
-    text: 'Quero simplificar minha rotina',
+    text: 'QUERO A METODOLOGIA QUE FUNCIONA',
     href: '#oferta',
   },
-  microcopy: 'Acesso imediato · 7 dias de garantia · Compra segura',
+  microcopy: 'Acesso imediato · 7 dias de garantia · Compra 100% segura',
   trustBadges: [
     'Acesso Imediato',
     '7 Dias de Garantia',
-    '12x R$58,08',
+    '12x R$70,07',
     '+5.000 Alunas',
   ],
 } as const;
@@ -140,28 +139,29 @@ export const beforeAfterData = {
 } as const;
 
 // ============================================================
-// QUEM É MARÍLIA
+// QUEM É MARÍLIA — dados oficiais da LP antiga
 // ============================================================
 
 export const aboutMariliaData = {
   eyebrow: 'Quem vai te guiar',
-  headline: '+12 anos organizando rotinas — inclusive de grandes empresas.',
+  headline: 'Marília já ajudou grandes empresas e profissionais a alcançarem resultados extraordinários.',
   paragraphs: [
-    'Engenheira por formação, especialista em organização e gestão do tempo por escolha. Já otimizei rotinas de times com mais de 100 pessoas e ajudei empresas a economizarem mais de R$100 mil por mês.',
-    'Hoje, dedico meu tempo a ensinar mulheres reais a recuperarem o controle da própria rotina — com método, não com força de vontade.',
+    'Especialista em organização e gestão do tempo, com uma trajetória que combina resultados práticos e impacto direto na vida de seus clientes. Ao longo de sua carreira, já ajudou empresas a economizarem mais de R$100 mil por mês, implementando técnicas simples e eficazes de organização.',
+    'Além disso, Marília tem experiência em otimizar equipes de mais de 100 funcionários, ajudando empresas a aumentarem seu faturamento e gerirem suas operações de forma estratégica e produtiva. Tudo isso sem complicações — porque sua abordagem é prática, acessível e comprovada.',
+    'Mas não para por aí: Marília não apenas transformou empresas, ela também ajudou milhares de pessoas a retomar o controle de suas rotinas, conquistando mais tempo, mais clareza e resultados com qualidade de vida. E sabe por quê? Porque a organização mudou a vida dela — e ela acredita que pode mudar a sua também.',
   ],
   stats: [
-    { value: '+12', label: 'anos otimizando rotinas' },
     { value: 'R$100k+', label: 'economizados/mês em empresas' },
-    { value: '+5.000', label: 'pessoas formadas' },
+    { value: '+100', label: 'funcionários em equipes otimizadas' },
+    { value: '+5.000', label: 'pessoas transformadas' },
   ],
-  // Foto deve ser otimizada e servida em srcset
   photo: {
-    src: '/images/marilia-perfil.webp',
-    alt: 'Marília Cordeiro — especialista em organização e produtividade',
-    width: 480,
-    height: 600,
+    src: '/images/marilia-2024.jpg',
+    alt: 'Marília Cordeiro — criadora do Método Organização Sincera',
+    width: 640,
+    height: 960,
   },
+  outroDescription: 'Já fui engenheira, trainee, startupeira e gestora. Hoje, aprendi a usar menos rótulos e explorar temas diversos que me fascinam: desenvolvimento humano, empreendedorismo, educação, tecnologia e produtividade. Além de professora, consultora e palestrante, sou também facilitadora da Fundação Estudar e mentora de projetos de inovação.',
 } as const;
 
 // ============================================================
@@ -322,24 +322,24 @@ export const courseModulesData = {
 } as const;
 
 // ============================================================
-// BÔNUS
+// BÔNUS — copy alinhada com KV aprovado (Lucas Veríssimo, Paula Furlan, Tássia Garcia)
 // ============================================================
 
 export const bonusesData = {
-  eyebrow: 'E tem mais',
-  headline: 'Dois bônus pra ir além do método.',
-  subheadline: 'Conteúdo complementar pra acelerar seus resultados.',
+  eyebrow: 'Achou que tinha acabado?',
+  headline: 'Além do curso Produtividade Sincera, você também vai receber 2 bônus exclusivos.',
+  subheadline: 'Conteúdo extra pra aprofundar o método.',
   bonuses: [
     {
       badge: 'Bônus 1',
-      title: 'Aulas com especialistas parceiras',
+      title: 'Aulas com parceiros',
       value: 'R$ 497',
       description:
-        '3 aulas extras com quem entende de verdade: Lucas Veríssimo (hora emocional pra autônomos), Paula Furlan (organização de home office) e Tássia Garcia (mentalidade pra realizar).',
+        'Aprenda a calcular sua hora de trabalho emocional com a orientação de Lucas Veríssimo, mentor especializado em profissionais autônomos e negócios criativos. Receba dicas valiosas sobre organização de home office em uma aula exclusiva com Paula Furlan, uma personal organizer especialista no setor de luxo. Além disso, explore estratégias mentais para realizar o que precisa com o método Ammar de Tássia Garcia, psicóloga e expert em mentalidade.',
       includes: [
-        'Aula 1: Como calcular sua hora de trabalho emocional',
-        'Aula 2: Organização de home office que funciona',
-        'Aula 3: Estratégias mentais pra fazer o que precisa',
+        'Aula 1: Hora de trabalho emocional — Lucas Veríssimo',
+        'Aula 2: Organização de home office — Paula Furlan',
+        'Aula 3: Estratégias mentais — Tássia Garcia (método Ammar)',
       ],
     },
     {
@@ -347,7 +347,7 @@ export const bonusesData = {
       title: 'Planners Organização Sincera',
       value: 'R$ 197',
       description:
-        'Os planners oficiais do método — físicos ou digitais, prontos pra usar no primeiro dia. Simples assim.',
+        'Aprenda como utilizar os Planners Organização Sincera: físico ou digital. Veja como essas ferramentas podem facilitar a execução do seu processo, seguindo o passo a passo que você aprenderá no curso.',
       includes: [
         'Versão digital (Notion + PDF)',
         'Versão física pra imprimir',
@@ -360,82 +360,77 @@ export const bonusesData = {
 } as const;
 
 // ============================================================
-// DEPOIMENTOS
+// DEPOIMENTOS — Dados REAIS da LP oficial
+// 6 vídeos do YouTube + 10 prints WhatsApp de alunas
 // ============================================================
+
+export const videosTestimonialsData = [
+  { id: '7Zl_QvXu0Yw', title: 'Depoimento 1 — Aluna Organização Sincera', startAt: 274 },
+  { id: 't-yhDktKi7E', title: 'Depoimento 2 — Aluna Organização Sincera', startAt: 52 },
+  { id: 'tsf7_qWDUGA', title: 'Depoimento 3 — Aluna Organização Sincera', startAt: 6 },
+  { id: '9JHwge4SPE0', title: 'Depoimento 4 — Aluna Organização Sincera', startAt: 1 },
+  { id: 'M6Tz0iODlQg', title: 'Depoimento 5 — Aluna Organização Sincera', startAt: 1 },
+  { id: '6eEJ-hDJqc0', title: 'Depoimento 6 — Aluna Organização Sincera', startAt: 0 },
+] as const;
+
+export const whatsappTestimonialsData = [
+  { src: '/images/depoimentos/01.jpeg', alt: 'Depoimento WhatsApp 1' },
+  { src: '/images/depoimentos/03.jpeg', alt: 'Depoimento WhatsApp 2' },
+  { src: '/images/depoimentos/04.jpeg', alt: 'Depoimento WhatsApp 3' },
+  { src: '/images/depoimentos/05.jpeg', alt: 'Depoimento WhatsApp 4' },
+  { src: '/images/depoimentos/06.jpeg', alt: 'Depoimento WhatsApp 5' },
+  { src: '/images/depoimentos/07.jpeg', alt: 'Depoimento WhatsApp 6' },
+  { src: '/images/depoimentos/08.jpeg', alt: 'Depoimento WhatsApp 7' },
+  { src: '/images/depoimentos/09.jpeg', alt: 'Depoimento WhatsApp 8' },
+  { src: '/images/depoimentos/10.jpeg', alt: 'Depoimento WhatsApp 9' },
+] as const;
 
 export const testimonialsData = {
   eyebrow: 'Quem fez, conta',
-  headline: 'Transformações reais de quem aplicou o método.',
+  headline: 'Não sou só eu. Veja como meus alunos estão hoje.',
+  introduction:
+    'O método coleciona milhares de prints de pessoas que tinham os mesmos problemas de organização e procrastinação que você. Te garanto que, dessa vez, você nunca mais vai precisar tentar outro caminho de novo.',
   featured: {
-    quote:
-      'Em 30 dias, recuperei 2h por dia. Hoje tenho tempo pra academia, pra ler, pra jantar com meu marido sem o celular do lado. O método não mudou só minha rotina — mudou meu casamento.',
-    author: 'Carla M.',
-    role: 'Advogada, 38 anos · São Paulo',
+    image: '/images/depoimentos/06.jpeg',
+    caption: 'Print real de WhatsApp de aluna da Marília',
   },
-  grid: [
-    {
-      quote: 'Parei de me sentir culpada quando descanso. Só isso já vale o investimento.',
-      author: 'Vanessa R.',
-      role: 'Empresária, 42 · Rio de Janeiro',
-    },
-    {
-      quote: '3 planners abandonados. 1 método aplicado. A diferença é o passo a passo.',
-      author: 'Roberta C.',
-      role: 'Psicóloga, 35 · Belo Horizonte',
-    },
-    {
-      quote: 'Em 2 semanas meu time parou de me perguntar "que dia é a reunião?".',
-      author: 'Marcela F.',
-      role: 'CEO de agência, 41 · Curitiba',
-    },
-    {
-      quote: 'Achava que era preguiça. Era falta de método. Hoje produzo 3x mais descansada.',
-      author: 'Juliana D.',
-      role: 'Designer, 33 · Porto Alegre',
-    },
-    {
-      quote: 'Recuperei 1h30 por dia. Em 1 mês são 45h. É quase um emprego兼职.',
-      author: 'Patrícia A.',
-      role: 'Consultora, 39 · Recife',
-    },
-    {
-      quote: 'O bônus do planner sozinhos vale mais que o curso inteiro.',
-      author: 'Lorena S.',
-      role: 'Médica, 36 · Salvador',
-    },
-  ],
-  footer: '+5.000 alunas. +5.000 histórias. A próxima pode ser a sua.',
+  footer: 'Mais de 5.000 alunas. Mais de 5.000 histórias. A próxima pode ser a sua.',
 } as const;
 
 // ============================================================
-// OFERTA
+// OFERTA — baseada no KV aprovado (R$ 1.497 → R$ 697 / 12x R$ 70,07)
 // ============================================================
 
 export const offerData = {
-  eyebrow: 'Oferta especial — vagas limitadas',
-  headline: 'Recupere seu tempo. Por menos do que você gasta por mês em delivery.',
-  subheadline: 'O investimento se paga no primeiro mês — em energia, tempo e resultado.',
-  anchor: 'De R$ 1.497 por',
+  eyebrow: 'Resumo do que você vai receber',
+  headline: 'O CURSO PRODUTIVIDADE SINCERA É COMPROVADO, SEGURO E APENAS COM O QUE REALMENTE IMPORTA.',
+  subheadline: '',
+  anchor: 'DE R$ 1.497 POR',
   price: {
-    main: '12x R$ 58,08',
+    main: '12x R$ 70,07',
     secondary: 'ou R$ 697 à vista',
   },
   includes: [
-    '6 módulos completos (8h de conteúdo)',
-    '2 bônus exclusivos (valor R$ 694)',
-    'Acesso por 12 meses',
-    'Comunidade de alunas',
-    'Garantia incondicional de 7 dias',
+    'Metodologia Organização Sincera testada e aprovada por mais de 5.000 pessoas',
+    'Estratégias com a fórmula da Sonhatividade, que vão desde o desenho dos seus sonhos e planejamento de longo prazo até uma nova rotina aplicada à sua realidade de hoje',
+    'Passo a passo de como percorrer o caminho da gestão do tempo com as atividades necessárias, na ordem exata para você fluir no seu processo',
+    'Estratégias para criação de novos Hábitos, de como vencer a Procrastinação e corrigir seu comportamento para atingir seus objetivos',
+    '7 dias para testar ou seu dinheiro de volta',
   ],
   cta: {
-    text: 'Quero começar agora',
+    text: 'COMPRAR AGORA',
     href: siteConfig.checkoutUrl,
   },
   microcopy: 'Acesso imediato após o pagamento · 7 dias de garantia',
   countdown: {
     label: 'Oferta encerra em',
-    durationHours: 24, // reseta a cada 24h via cookie
+    durationHours: 24,
   },
+  paymentMethods: [
+    { name: 'Cartão', icon: 'card', detail: 'até 12x' },
+    { name: 'Boleto', icon: 'barcode', detail: 'à vista' },
+    { name: 'PIX', icon: 'pix', detail: 'à vista' },
+  ],
 } as const;
 
 // ============================================================
@@ -457,36 +452,40 @@ export const guaranteeData = {
 } as const;
 
 // ============================================================
-// FAQ
+// FAQ — 7 Perguntas OFICIAIS da LP antiga
 // ============================================================
 
 export const faqData = {
-  eyebrow: 'Tira-dúvidas',
-  headline: 'Perguntas que toda pessoa prudente faz antes de comprar.',
+  eyebrow: 'Dúvidas frequentes',
+  headline: 'Tira-dúvidas frequentes',
   questions: [
     {
-      q: 'Funciona pra quem tem TDAH ou se distrai fácil?',
-      a: 'Sim. O método foi desenhado pra funcionar com rotinas caóticas, não apesar delas. Você vai aprender a montar uma estrutura que respeita seus ciclos de foco e usa seus picos de energia a favor — não contra.',
+      q: 'QUANTO CUSTA O CURSO PRODUTIVIDADE SINCERA?',
+      a: 'O valor do método (módulos completos + bônus) é de apenas R$ 697, ou 12 vezes R$ 70,07.',
     },
     {
-      q: 'Quanto tempo por dia preciso dedicar?',
-      a: '30 minutos por dia são suficientes pra aplicar o método nos primeiros 30 dias. As aulas são curtas (5–15 min) e podem ser assistidas no celular. O passo a passo vai sendo implementado aos poucos, sem virar sua vida do avesso.',
+      q: 'QUAIS SÃO AS FORMAS DE PAGAMENTO?',
+      a: 'Eu disponibilizo TODAS as formas de pagamento possíveis, ou seja, pagamento no cartão em até 12x, pagamento no boleto, PayPal e até PIX, se você ficar mais confortável.',
     },
     {
-      q: 'Posso fazer pelo celular?',
-      a: 'Sim. A plataforma é responsiva e funciona em qualquer dispositivo com internet — smartphone, tablet, notebook, smart TV. Recomendamos começar pelo computador pra ter mais concentração, mas o celular é totalmente viável.',
+      q: 'COMO VOU ACESSAR O MÉTODO? É TUDO ONLINE?',
+      a: 'Após a confirmação da compra você receberá no seu e-mail acesso à nossa plataforma online com todos os módulos e videoaulas disponíveis. Você precisará apenas de um dispositivo com acesso à internet para assistir e colocar a nossa metodologia em prática quando e onde desejar.',
     },
     {
-      q: 'Por quanto tempo tenho acesso?',
-      a: '12 meses a partir da data da compra. Dentro desse período, você pode rever todas as aulas quantas vezes quiser e baixar todos os materiais.',
+      q: 'O CURSO É PARA INICIANTES OU PESSOAS MUITO DESORGANIZADAS?',
+      a: 'O Produtividade Sincera é o MELHOR lugar para você começar a se organizar! Ele inclui toda a minha metodologia, desde o desenho de uma nova rotina até o acompanhamento do processo, incluindo também o desenvolvimento de melhores hábitos e como executar melhor suas atividades, com dicas e ferramentas necessárias para te acompanhar em todo o processo. Você vai percorrer o caminho da gestão do tempo de forma mais fluida e aprendendo todo o passo a passo, sem ficar perdendo tempo com erros bobos no caminho. O melhor: eu acelero o seu aprendizado trazendo o que funciona, de forma simples e enxuta. Você não precisa conhecer tudo sobre organização e produtividade. Eu já estudo muito e trabalho com isso por você. Aqui, eu selecionei o que você precisa saber. As aulas são curtas e o curso tem o total de 8h exatamente para que você possa realizá-lo e ficar satisfeito com o seu investimento, inclusive de tempo! 😉',
     },
     {
-      q: 'Como funciona a garantia?',
-      a: 'Você tem 7 dias pra testar. Se decidir que não é pra você, basta enviar um email pro nosso suporte. Devolvemos 100% do valor em até 5 dias úteis, sem perguntas, sem burocracia.',
+      q: 'EU JÁ ESTUDEI MUITO SOBRE PRODUTIVIDADE E JÁ FIZ ALGUNS CURSOS SOBRE O TEMA. O QUE ESSE TEM DE DIFERENTE?',
+      a: 'Eu! Acredite, eu também já estudei muito, já li e fiz vários cursos sobre o tema. Claro, sempre tem algo que eu possa aprender e por isso não paro de estudar. Mas a verdade é que, até hoje, onde eu mais aprendi foi na prática: minha e com meus clientes. Entendendo as principais dúvidas e percebendo como eu costumo resolver na minha vida, a partir de insights próprios e de estudos múltiplos. A prática, os estudos e a melhoria constante me ajudaram a construir o Produtividade Sincera, que tem hoje a minha metodologia exclusiva. Os primeiros módulos possuem aulas e conceitos que você não encontrará em nenhum outro lugar, são exclusivos. Os últimos módulos são um compilado dos melhores conceitos que eu encontrei nos meus estudos e que acredito que vocês deveriam conhecer. Sem excessos, apenas o essencial para que você atinja a sua produtividade de forma mais realista, sincera e eficiente.',
     },
     {
-      q: 'Por que esse valor e não mais barato?',
-      a: 'Porque o método foi testado por +5.000 pessoas, é baseado em +12 anos de experiência e entrega ferramentas práticas que custariam muito mais se fossem compradas separadas. O valor reflete o investimento necessário pra resultados reais — não é uma promoção relâmpago, é um curso sério com resultado sério.',
+      q: 'POSSO FAZER O CURSO PELO CELULAR?',
+      a: 'Sim, o curso pode ser acessado por qualquer dispositivo que possui acesso à internet. Isso inclui tablet, celular, desktop, notebook e Smart TV. Mas eu recomendo fortemente que você assista às aulas a partir de um desktop ou notebook porque gera mais concentração e menos interrupção. Assim como tarefas de trabalho devem ser direcionadas para o seu computador. É uma boa forma de você começar a praticar.',
+    },
+    {
+      q: 'POR QUANTO TEMPO TEREI ACESSO AO CURSO?',
+      a: 'Você terá acesso ao programa por 1 ano (12 meses), a partir da data de aprovação da sua compra. Dentro desse período, você poderá rever todos os conteúdos quantas vezes quiser.',
     },
   ],
 } as const;
@@ -509,7 +508,7 @@ export const finalCtaData = {
 export type HeroData = typeof heroData;
 export type PainPoint = (typeof painPointsData.cards)[number];
 export type Module = (typeof courseModulesData.modules)[number];
-export type Testimonial = (typeof testimonialsData.grid)[number];
+export type Testimonial = (typeof videosTestimonialsData)[number];
 export type Pillar = (typeof methodPillarsData.pillars)[number];
 export type Bonus = (typeof bonusesData.bonuses)[number];
 export type Persona = (typeof whoIsForData.cards)[number];

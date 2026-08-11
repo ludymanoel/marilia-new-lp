@@ -1,6 +1,6 @@
 ---
 /**
- * Bonuses — 2 cards de bônus com valor ancorado e lista do que inclui.
+ * Bonuses — 2 cards com mockups reais do curso + valor ancorado.
  */
 import Icon from '../ui/Icon.astro';
 import SectionWrapper from '../ui/SectionWrapper.astro';
@@ -17,17 +17,25 @@ import { bonusesData } from '../../data/content';
   />
 
   <div class="grid md:grid-cols-2 gap-6 md:gap-8 mt-12 md:mt-16 max-w-5xl mx-auto stagger">
-    {bonusesData.bonuses.map((bonus) => (
-      <article class="card card--hover relative overflow-hidden border-2 border-accent-300 reveal">
+    {bonusesData.bonuses.map((bonus, idx) => (
+      <article class="card card--hover relative overflow-hidden border-2 border-yellow-300 reveal">
         <!-- Badge Bônus -->
-        <div class="absolute top-0 right-0 bg-accent-500 text-neutral-900 px-4 py-1.5 rounded-bl-xl font-bold text-xs uppercase tracking-widest">
+        <div class="absolute top-0 right-0 bg-yellow-500 text-brand-900 px-4 py-1.5 rounded-bl-xl font-bold text-xs uppercase tracking-widest">
           {bonus.badge}
         </div>
 
-        <!-- Imagem ilustrativa do bônus (placeholder) -->
-        <div class="aspect-video bg-gradient-to-br from-accent-100 to-brand-100 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden">
-          <div class="absolute inset-0 pattern-grid opacity-20"></div>
-          <Icon name={bonus.badge === 'Bônus 1' ? 'sparkles' : 'calendar'} size={64} class="text-accent-700" />
+        <!-- Mockup real do bônus -->
+        <div class="aspect-video bg-gradient-to-br from-yellow-100 to-brand-100 rounded-xl mb-6 flex items-center justify-center overflow-hidden">
+          <picture>
+            <source srcset={idx === 0 ? '/images/mockups/bonus1.webp' : '/images/mockups/bonus2.webp'} type="image/webp" />
+            <img
+              src={idx === 0 ? '/images/mockups/bonus1.png' : '/images/mockups/bonus2.png'}
+              alt={`Mockup ${bonus.title}`}
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover"
+            />
+          </picture>
         </div>
 
         <div class="space-y-4">
@@ -37,13 +45,13 @@ import { bonusesData } from '../../data/content';
             </h3>
             <div class="text-right flex-shrink-0">
               <div class="text-xs text-neutral-500 line-through">de</div>
-              <div class="font-display font-bold text-xl text-accent-700">
+              <div class="font-display font-bold text-xl text-yellow-700">
                 {bonus.value}
               </div>
             </div>
           </div>
 
-          <p class="text-neutral-700 leading-relaxed">
+          <p class="text-neutral-700 leading-relaxed text-sm">
             {bonus.description}
           </p>
 
@@ -61,7 +69,7 @@ import { bonusesData } from '../../data/content';
   </div>
 
   <div class="text-center mt-10 reveal">
-    <p class="inline-flex items-center gap-2 bg-white border border-accent-200 text-accent-700 px-5 py-2 rounded-full font-semibold shadow-sm">
+    <p class="inline-flex items-center gap-2 bg-white border border-yellow-200 text-yellow-700 px-5 py-2 rounded-full font-semibold shadow-sm">
       <Icon name="gift" size={18} />
       {bonusesData.totalValue}
     </p>

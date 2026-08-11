@@ -1,0 +1,59 @@
+---
+/**
+ * SmartImage — Imagem otimizada com fallback automático WebP → JPG/PNG.
+ * Gera source set responsivo e suporta lazy loading nativo.
+ *
+ * @example
+ * <SmartImage
+ *   webp="/images/depoimentos/01.webp"
+ *   fallback="/images/depoimentos/01.jpeg"
+ *   alt="Depoimento Maria"
+ *   loading="lazy"
+ * />
+ */
+
+export interface Props {
+  webp?: string;
+  fallback: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'async' | 'sync' | 'auto';
+  class?: string;
+  sizes?: string;
+  fetchpriority?: 'high' | 'low' | 'auto';
+}
+
+const {
+  webp,
+  fallback,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  decoding = 'async',
+  class: className = '',
+  sizes,
+  fetchpriority,
+} = Astro.props;
+
+const ext = fallback.split('.').pop()?.toLowerCase();
+const mimeType = ext === 'jpg' ? 'jpeg' : ext;
+---
+
+<picture>
+  {webp && (
+    <source srcset={webp} type="image/webp" sizes={sizes} />
+  )}
+  <img
+    src={fallback}
+    alt={alt}
+    width={width}
+    height={height}
+    loading={loading}
+    decoding={decoding}
+    fetchpriority={fetchpriority}
+    class={className}
+  />
+</picture>

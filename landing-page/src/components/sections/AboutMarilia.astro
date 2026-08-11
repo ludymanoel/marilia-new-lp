@@ -1,7 +1,7 @@
 ---
 /**
- * AboutMarilia — Seção de autoridade. Usa logo fractal como marca
- * até que a foto oficial seja fornecida pela cliente.
+ * AboutMarilia — Foto real da Marília + logo fractal como fundo.
+ * Dados baseados na LP original aprovada.
  */
 import SectionWrapper from '../ui/SectionWrapper.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
@@ -40,15 +40,18 @@ import { aboutMariliaData } from '../../data/content';
       </ul>
     </div>
 
-    <!-- Logo fractal oficial como placeholder visual -->
+    <!-- Foto real da Marília -->
     <div class="lg:col-span-2 order-1 lg:order-2 reveal">
       <div class="relative">
-        <div class="aspect-[4/5] bg-gradient-fractal rounded-2xl overflow-hidden shadow-large flex flex-col items-center justify-center p-8">
-          <LogoMC
-            variant="color"
-            size="xl"
-            showText={true}
-            class="max-w-full h-auto"
+        <div class="aspect-[4/5] rounded-2xl overflow-hidden shadow-large relative">
+          <img
+            src="/images/marilia-2024.webp"
+            alt="Marília Cordeiro — criadora do Método Organização Sincera"
+            width="640"
+            height="960"
+            loading="eager"
+            decoding="async"
+            class="w-full h-full object-cover"
           />
         </div>
         <!-- Badge decorativa -->
@@ -57,6 +60,13 @@ import { aboutMariliaData } from '../../data/content';
           aria-hidden="true"
         >
           +12 anos de método
+        </div>
+        <!-- Logo fractal decorativa -->
+        <div
+          class="absolute -top-4 -right-4 bg-white rounded-xl shadow-lg p-3"
+          aria-hidden="true"
+        >
+          <LogoMC variant="color" size="sm" showText={false} />
         </div>
       </div>
     </div>
