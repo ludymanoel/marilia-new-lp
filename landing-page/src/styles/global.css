@@ -31,10 +31,16 @@
   --color-cyan-100: #d1f6f9;
 
   /* Amarelo — CTA principal */
+  --color-yellow-900: #654F01;
+  --color-yellow-800: #8A6E01;
   --color-yellow-700: #B59102;
+  --color-yellow-600: #D97706;
   --color-yellow-500: #FCC103;
-  --color-yellow-300: #fdd54b;
-  --color-yellow-100: #fdeeb9;
+  --color-yellow-400: #fdd54b;
+  --color-yellow-300: #fde68a;
+  --color-yellow-200: #fdeeb9;
+  --color-yellow-100: #fef3c7;
+  --color-yellow-50:  #FFFBEB;
 
   /* Magenta/Pink — accent warm */
   --color-pink-700: #9B0650;
@@ -55,10 +61,27 @@
   --color-neutral-900: #1C1917;
 
   /* Status (sem oficial — derivados) */
-  --color-success-500: #10B981;
+  --color-success-50:  #ECFDF5;
   --color-success-100: #D1FAE5;
+  --color-success-500: #10B981;
   --color-success-700: #065F46;
   --color-error-500: #EF4444;
+
+  /* Aliases Tailwind para nomes usados nos componentes */
+  --color-rose-50:  #FFF1F2;
+  --color-rose-100: #FFE4E6;
+  --color-rose-500: #F43F5E;
+  --color-rose-600: #E11D48;
+  --color-rose-700: #BE123C;
+  --color-emerald-50:  #ECFDF5;
+  --color-emerald-100: #D1FAE5;
+  --color-emerald-200: #A7F3D0;
+  --color-emerald-500: #10B981;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065F46;
+  --color-cyan-50:  #ECFEFF;
+  --color-cyan-100: #CFFAFE;
+  --color-cyan-500: #06B6D4;
 
   /* Aliases — "accent" mapeia para "yellow" (cor principal de CTA do brandbook) */
   --color-accent-50:  #FFFBEB;
@@ -174,48 +197,6 @@
 # =====================================================================
 
 @layer utilities {
-  /* Gradientes oficiais */
-  .bg-gradient-hero {
-    background:
-      radial-gradient(ellipse at top right, rgba(6, 120, 234, 0.18), transparent 55%),
-      radial-gradient(ellipse at bottom left, rgba(211, 9, 110, 0.10), transparent 55%),
-      linear-gradient(135deg, #000154 0%, #001a7a 100%);
-  }
-
-  .bg-gradient-offer {
-    background:
-      radial-gradient(ellipse at top, rgba(252, 193, 3, 0.22), transparent 60%),
-      linear-gradient(135deg, #000154 0%, #0033a9 50%, #000154 100%);
-  }
-
-  .bg-gradient-soft {
-    background: linear-gradient(180deg, #FAFAF9 0%, #fdeeb9 100%);
-  }
-
-  .bg-gradient-fractal {
-    background-image:
-      radial-gradient(circle at 20% 20%, rgba(6, 120, 234, 0.08) 0%, transparent 30%),
-      radial-gradient(circle at 80% 40%, rgba(211, 9, 110, 0.06) 0%, transparent 25%),
-      radial-gradient(circle at 40% 80%, rgba(252, 193, 3, 0.08) 0%, transparent 30%);
-  }
-
-  /* Text gradient */
-  .text-gradient-yellow {
-    background: linear-gradient(135deg, #FCC103 0%, #fdd54b 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
-
-  .text-gradient-brand {
-    background: linear-gradient(135deg, #0678EA 0%, #3DDAE7 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
-  }
-
   /* Reveal on scroll */
   .reveal {
     opacity: 0;
@@ -495,13 +476,6 @@
 }
 @font-face {
   font-family: 'Config Rounded';
-  src: url('/fonts/ConfigRounded-SemiBold.otf') format('opentype');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Config Rounded';
   src: url('/fonts/ConfigRounded-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
@@ -520,4 +494,46 @@
   font-weight: 900;
   font-style: normal;
   font-display: swap;
+}
+
+/* ========== Custom utilities (Tailwind v4 @utility directive) ========== */
+
+@utility bg-gradient-hero {
+  background:
+    radial-gradient(ellipse at top right, rgba(6, 120, 234, 0.18), transparent 55%),
+    radial-gradient(ellipse at bottom left, rgba(211, 9, 110, 0.10), transparent 55%),
+    linear-gradient(135deg, #000154 0%, #001a7a 100%);
+}
+
+@utility bg-gradient-offer {
+  background:
+    radial-gradient(ellipse at top, rgba(252, 193, 3, 0.22), transparent 60%),
+    linear-gradient(135deg, #000154 0%, #0033a9 50%, #000154 100%);
+}
+
+@utility bg-gradient-soft {
+  background: linear-gradient(180deg, #FAFAF9 0%, #fdeeb9 100%);
+}
+
+@utility bg-gradient-fractal {
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(6, 120, 234, 0.08) 0%, transparent 30%),
+    radial-gradient(circle at 80% 40%, rgba(211, 9, 110, 0.06) 0%, transparent 25%),
+    radial-gradient(circle at 40% 80%, rgba(252, 193, 3, 0.08) 0%, transparent 30%);
+}
+
+@utility text-gradient-yellow {
+  background: linear-gradient(135deg, #FCC103 0%, #fdd54b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@utility text-gradient-brand {
+  background: linear-gradient(135deg, #0678EA 0%, #3DDAE7 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
