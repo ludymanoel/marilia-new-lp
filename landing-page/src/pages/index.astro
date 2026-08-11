@@ -1,0 +1,54 @@
+---
+/**
+ * Página principal da LP.
+ * Compõe Header + 14 seções + Footer + componentes de produção.
+ */
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/sections/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+import SocialProofBar from '../components/sections/SocialProofBar.astro';
+import PainPoints from '../components/sections/PainPoints.astro';
+import BeforeAfter from '../components/sections/BeforeAfter.astro';
+import AboutMarilia from '../components/sections/AboutMarilia.astro';
+import MethodPillars from '../components/sections/MethodPillars.astro';
+import WhoIsFor from '../components/sections/WhoIsFor.astro';
+import CourseModules from '../components/sections/CourseModules.astro';
+import Bonuses from '../components/sections/Bonuses.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import OfferCard from '../components/sections/OfferCard.astro';
+import Guarantee from '../components/sections/Guarantee.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import FinalCTA from '../components/sections/FinalCTA.astro';
+import Footer from '../components/sections/Footer.astro';
+import StickyCTA from '../components/sections/StickyCTA.astro';
+import CookieConsent from '../components/sections/CookieConsent.astro';
+import ExitIntent from '../components/sections/ExitIntent.astro';
+---
+
+<Layout>
+  <Header />
+
+  <main id="main">
+    <Hero />
+    <SocialProofBar />
+    <PainPoints />
+    <BeforeAfter />
+    <AboutMarilia />
+    <MethodPillars />
+    <WhoIsFor />
+    <CourseModules />
+    <Bonuses />
+    <Testimonials />
+    <OfferCard />
+    <Guarantee />
+    <FAQ />
+    <FinalCTA />
+  </main>
+
+  <Footer />
+
+  <!-- Componentes de produção (UX/conversão) -->
+  <StickyCTA />
+  <CookieConsent />
+  <ExitIntent />
+</Layout>

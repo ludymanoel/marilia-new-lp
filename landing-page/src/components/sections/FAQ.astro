@@ -1,0 +1,35 @@
+---
+/**
+ * FAQ — Perguntas estratégicas que combatem objeções (não informacionais).
+ * Accordion nativo com <details>.
+ */
+import SectionWrapper from '../ui/SectionWrapper.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { faqData } from '../../data/content';
+---
+
+<SectionWrapper id="faq" theme="soft" ariaLabelledby="faq-heading">
+  <SectionHeading
+    eyebrow={faqData.eyebrow}
+    title={faqData.headline}
+    align="center"
+  />
+
+  <div class="max-w-3xl mx-auto mt-12 md:mt-16 space-y-3 stagger">
+    {faqData.questions.map((item, idx) => (
+      <details class="accordion-item reveal">
+        <summary>
+          <span class="flex items-center gap-4 flex-1">
+            <span class="font-display text-xl font-bold text-brand-300 tabular-nums">
+              {(idx + 1).toString().padStart(2, '0')}
+            </span>
+            <span class="flex-1 text-left">{item.q}</span>
+          </span>
+        </summary>
+        <div class="accordion-content">
+          <p>{item.a}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</SectionWrapper>

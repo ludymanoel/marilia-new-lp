@@ -1,0 +1,52 @@
+---
+/**
+ * Guarantee — Selo visual + texto persuasivo + âncora de volta à oferta.
+ */
+import Icon from '../ui/Icon.astro';
+import SectionWrapper from '../ui/SectionWrapper.astro';
+import { guaranteeData } from '../../data/content';
+---
+
+<SectionWrapper theme="light" ariaLabelledby="guarantee-heading">
+  <article
+    class="max-w-4xl mx-auto grid md:grid-cols-[200px_1fr] gap-8 items-center reveal"
+  >
+    <!-- Selo visual -->
+    <div class="text-center md:text-left">
+      <div
+        class="inline-flex items-center justify-center w-40 h-40 md:w-48 md:h-48 rounded-full bg-gradient-to-br from-success-100 to-success-500 shadow-large mx-auto"
+        aria-hidden="true"
+      >
+        <div class="text-center text-success-700">
+          <Icon name="shield-check" size={64} class="mx-auto mb-2" />
+          <div class="font-display font-bold text-sm uppercase leading-tight">
+            {guaranteeData.seal.title}
+          </div>
+          <div class="text-xs font-medium mt-1 text-success-800">
+            {guaranteeData.seal.subtitle}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Texto -->
+    <div>
+      <h2 id="guarantee-heading" class="mb-4">
+        {guaranteeData.headline}
+      </h2>
+      <div class="space-y-3 text-neutral-700 leading-relaxed">
+        {guaranteeData.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+
+      <a
+        href={guaranteeData.ctaHref}
+        class="inline-flex items-center gap-2 mt-6 text-brand-700 font-semibold hover:text-brand-900 transition-colors"
+      >
+        {guaranteeData.cta}
+        <Icon name="arrow-right" size={18} />
+      </a>
+    </div>
+  </article>
+</SectionWrapper>

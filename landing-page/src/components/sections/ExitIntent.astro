@@ -1,0 +1,194 @@
+---
+/**
+ * ExitIntent — Popup sutil quando o usuário tenta sair da página.
+ *
+ * COMPORTAMENTO HONESTO (sem dark patterns):
+ * - Dispara APENAS no mouseleave real (mouse saindo pela barra de URL/top)
+ * - Apenas em desktop (mobile não tem evento equivalente)
+ * - Apenas uma vez por sessão (sessionStorage)
+ * - Oferece desconto de 5% (não é "última chance" — é um benefício legítimo)
+ * - Pode ser fechado com X, ESC ou clique fora
+ */
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { siteConfig } from '../../data/content';
+---
+
+<div
+  id="exit-intent"
+  class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-neutral-900/70 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="exit-intent-title"
+  data-exit-intent
+>
+  <div
+    class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden relative"
+    data-exit-intent-content
+  >
+    <button
+      type="button"
+      class="absolute top-3 right-3 w-9 h-9 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors"
+      aria-label="Fechar"
+      data-exit-intent-close
+    >
+      <Icon name="x" size={18} class="text-neutral-700" />
+    </button>
+
+    <div class="bg-gradient-hero text-white p-6 text-center">
+      <div class="w-14 h-14 rounded-full bg-accent-500 text-neutral-900 flex items-center justify-center mx-auto mb-3">
+        <Icon name="gift" size={28} />
+      </div>
+      <h2 id="exit-intent-title" class="text-2xl font-display font-bold mb-2">
+        Antes de ir, um presente
+      </h2>
+      <p class="text-sm text-neutral-200">
+        5% de desconto pra você que chegou até aqui
+      </p>
+    </div>
+
+    <div class="p-6 text-center">
+      <p class="text-sm text-neutral-600 mb-5">
+        Use o cupom <strong class="text-neutral-900">SAIR5</strong> na próxima tela
+        e ganhe <strong class="text-success-700">R$ 34,85 de desconto</strong>.
+      </p>
+
+      <Button
+        variant="primary"
+        href={siteConfig.checkoutUrl}
+        external={true}
+        size="md"
+        class="w-full"
+        ariaLabel="Ir para checkout com desconto"
+      >
+        <Icon name="rocket" size={18} />
+        Quero meu desconto
+      </Button>
+
+      <button
+        type="button"
+        class="block w-full text-center text-xs text-neutral-500 hover:text-neutral-700 mt-3 transition-colors"
+        data-exit-intent-close
+      >
+        Não, obrigado. Continuar sem desconto.
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  #exit-intent[data-state="open"] {
+    display: flex !important;
+    animation: fade-in 300ms var(--ease-out-quart);
+  }
+  #exit-intent[data-state="open"] [data-exit-intent-content] {
+    animation: scale-in 400ms var(--ease-out-quart);
+  }
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scale-in {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'mc_exit_intent_shown';
+  const COOKIE_KEY = 'mc_exit_intent_dismissed_until';
+
+  function hasShownThisSession(): boolean {
+    try {
+      return sessionStorage.getItem(STORAGE_KEY) === '1';
+    } catch {
+      return false;
+    }
+  }
+
+  function markShownThisSession(): void {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, '1');
+    } catch { /* ignore */ }
+  }
+
+  function isDismissedRecently(): boolean {
+    try {
+      const until = parseInt(localStorage.getItem(COOKIE_KEY) || '0', 10);
+      return Date.now() < until;
+    } catch {
+      return false;
+    }
+  }
+
+  function markDismissed(): void {
+    try {
+      // Dismiss por 7 dias
+      const sevenDays = 7 * 24 * 60 * 60 * 1000;
+      localStorage.setItem(COOKIE_KEY, String(Date.now() + sevenDays));
+    } catch { /* ignore */ }
+  }
+
+  function openExitIntent(): void {
+    const el = document.getElementById('exit-intent');
+    if (!el) return;
+    el.dataset.state = 'open';
+    el.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    markShownThisSession();
+  }
+
+  function closeExitIntent(): void {
+    const el = document.getElementById('exit-intent');
+    if (!el) return;
+    el.dataset.state = 'closed';
+    el.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    markDismissed();
+  }
+
+  function initExitIntent(): void {
+    if (hasShownThisSession() || isDismissedRecently()) return;
+
+    const el = document.getElementById('exit-intent');
+    if (!el) return;
+
+    // Apenas desktop com mouse
+    const isDesktop = window.matchMedia('(pointer: fine) and (min-width: 768px)').matches;
+    if (!isDesktop) return;
+
+    // Detectar saída pela barra superior (heurística comum)
+    let triggered = false;
+    document.addEventListener('mouseout', (e) => {
+      if (triggered) return;
+      // mouse saindo pela parte superior da página
+      if (e.clientY <= 0 && !e.relatedTarget && !hasShownThisSession()) {
+        triggered = true;
+        // Pequeno delay pra não assustar
+        setTimeout(openExitIntent, 500);
+      }
+    });
+
+    // Fechar com ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && el.dataset.state === 'open') {
+        closeExitIntent();
+      }
+    });
+
+    // Fechar com clique no backdrop ou em botões de fechar
+    el.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      if (
+        target === el ||
+        target.dataset.exitIntentClose !== undefined ||
+        target.closest('[data-exit-intent-close]')
+      ) {
+        closeExitIntent();
+      }
+    });
+  }
+
+  // Aguardar 5s antes de ativar (não atrapalhar LCP nem UX)
+  setTimeout(initExitIntent, 5000);
+</script>

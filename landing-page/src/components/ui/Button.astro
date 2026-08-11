@@ -1,0 +1,85 @@
+---
+/**
+ * Button — Componente CTA reutilizável.
+ * Suporta 3 variantes, target, rel, aria-label.
+ * Repassa data-* attributes (ex: data-track-cta) para tracking.
+ *
+ * @example <Button variant="primary" href="#oferta" data-track-cta="hero">Quero começar</Button>
+ */
+import type { HTMLAttributes } from 'astro/types';
+
+type AnchorAttrs = HTMLAttributes<'a'>;
+type DataAttrs = { [K in `data-${string}`]: string | number | boolean | undefined };
+
+export interface Props extends Omit<AnchorAttrs, 'type' | keyof DataAttrs> {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'md' | 'lg';
+  href: string;
+  external?: boolean;
+  ariaLabel?: string;
+  showArrow?: boolean;
+  // Captura explícita de data-* attributes
+  'data-track-cta'?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  external = false,
+  ariaLabel,
+  showArrow = true,
+  class: className = '',
+  'data-track-cta': trackCta,
+  ...rest
+} = Astro.props;
+
+const variantClass = {
+  primary: 'btn--primary pulse-attention',
+  secondary: 'btn--secondary',
+  ghost: 'btn--ghost',
+}[variant];
+
+const sizeClass = size === 'lg' ? 'btn--lg' : '';
+
+const externalAttrs = external
+  ? { target: '_blank', rel: 'noopener noreferrer' }
+  : {};
+
+const dataAttrs: DataAttrs = {};
+if (trackCta) dataAttrs['data-track-cta'] = trackCta;
+---
+
+<a
+  href={href}
+  class:list={['btn', variantClass, sizeClass, className]}
+  aria-label={ariaLabel}
+  {...externalAttrs}
+  {...dataAttrs}
+  {...rest}
+>
+  <slot />
+  {showArrow && variant === 'primary' && (
+    <svg
+      class="w-4 h-4 transition-transform group-hover:translate-x-1"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="5" y1="12" x2="19" y2="12"></line>
+      <polyline points="12 5 19 12 12 19"></polyline>
+    </svg>
+  )}
+</a>
+
+<style>
+  .btn--lg {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.0625rem;
+    min-height: 56px;
+  }
+</style>

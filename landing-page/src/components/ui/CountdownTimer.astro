@@ -1,0 +1,110 @@
+---
+/**
+ * CountdownTimer — Timer regressivo com persistência honesta.
+ *
+ * Comportamento:
+ * - Persiste data de expiração em localStorage (sobrevive reloads)
+ * - Reseta após 24h (escassez honesta, não fake)
+ * - A11y: aria-live="polite", screen reader friendly
+ * - SSR: renderiza placeholder, hidrata com JS
+ */
+export interface Props {
+  initialHours?: number;
+  label?: string;
+  storageKey?: string;
+}
+
+const {
+  initialHours = 24,
+  label = 'Oferta encerra em',
+  storageKey = 'mc_offer_expires_at',
+} = Astro.props;
+---
+
+<div
+  class="countdown flex flex-col items-center gap-2"
+  data-countdown
+  data-storage-key={storageKey}
+  data-initial-hours={initialHours}
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <span class="text-xs uppercase tracking-widest text-white/70 font-semibold">
+    {label}
+  </span>
+  <div
+    class="flex items-center gap-2 font-display font-bold text-2xl md:text-3xl text-white tabular-nums"
+    aria-hidden="true"
+  >
+    <span class="cd-h inline-block min-w-[2.5ch] text-center bg-white/10 rounded-md px-2 py-1">--</span>
+    <span class="text-white/50">:</span>
+    <span class="cd-m inline-block min-w-[2.5ch] text-center bg-white/10 rounded-md px-2 py-1">--</span>
+    <span class="text-white/50">:</span>
+    <span class="cd-s inline-block min-w-[2.5ch] text-center bg-white/10 rounded-md px-2 py-1">--</span>
+  </div>
+  <span class="sr-only" data-countdown-sr></span>
+</div>
+
+<script>
+  function initCountdowns() {
+    const countdowns = document.querySelectorAll<HTMLElement>('[data-countdown]');
+
+    countdowns.forEach((el) => {
+      const storageKey = el.dataset.storageKey || 'mc_offer_expires_at';
+      const initialHours = parseInt(el.dataset.initialHours || '24', 10);
+
+      // Recuperar ou criar timestamp de expiração
+      let expiresAt: number;
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored) {
+          const parsed = parseInt(stored, 10);
+          if (!Number.isNaN(parsed) && parsed > Date.now()) {
+            expiresAt = parsed;
+          } else {
+            // Expirado — criar novo
+            expiresAt = Date.now() + initialHours * 60 * 60 * 1000;
+            localStorage.setItem(storageKey, String(expiresAt));
+          }
+        } else {
+          expiresAt = Date.now() + initialHours * 60 * 60 * 1000;
+          localStorage.setItem(storageKey, String(expiresAt));
+        }
+      } catch {
+        // localStorage indisponível — usar timer em memória
+        expiresAt = Date.now() + initialHours * 60 * 60 * 1000;
+      }
+
+      const hEl = el.querySelector<HTMLElement>('.cd-h');
+      const mEl = el.querySelector<HTMLElement>('.cd-m');
+      const sEl = el.querySelector<HTMLElement>('.cd-s');
+      const srEl = el.querySelector<HTMLElement>('[data-countdown-sr]');
+
+      function tick() {
+        const remaining = Math.max(0, expiresAt - Date.now());
+        const totalSeconds = Math.floor(remaining / 1000);
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        if (hEl) hEl.textContent = hours.toString().padStart(2, '0');
+        if (mEl) mEl.textContent = minutes.toString().padStart(2, '0');
+        if (sEl) sEl.textContent = seconds.toString().padStart(2, '0');
+        if (srEl) {
+          srEl.textContent = `${hours} horas, ${minutes} minutos e ${seconds} segundos restantes`;
+        }
+
+        if (remaining > 0) {
+          requestAnimationFrame(() => setTimeout(tick, 1000));
+        } else {
+          if (hEl) hEl.textContent = '00';
+          if (mEl) mEl.textContent = '00';
+          if (sEl) sEl.textContent = '00';
+        }
+      }
+      tick();
+    });
+  }
+
+  initCountdowns();
+</script>

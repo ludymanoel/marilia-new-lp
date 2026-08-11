@@ -1,0 +1,69 @@
+---
+/**
+ * Bonuses — 2 cards de bônus com valor ancorado e lista do que inclui.
+ */
+import Icon from '../ui/Icon.astro';
+import SectionWrapper from '../ui/SectionWrapper.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { bonusesData } from '../../data/content';
+---
+
+<SectionWrapper id="bonus" theme="gradient" ariaLabelledby="bonus-heading">
+  <SectionHeading
+    eyebrow={bonusesData.eyebrow}
+    title={bonusesData.headline}
+    subtitle={bonusesData.subheadline}
+    align="center"
+  />
+
+  <div class="grid md:grid-cols-2 gap-6 md:gap-8 mt-12 md:mt-16 max-w-5xl mx-auto stagger">
+    {bonusesData.bonuses.map((bonus) => (
+      <article class="card card--hover relative overflow-hidden border-2 border-accent-300 reveal">
+        <!-- Badge Bônus -->
+        <div class="absolute top-0 right-0 bg-accent-500 text-neutral-900 px-4 py-1.5 rounded-bl-xl font-bold text-xs uppercase tracking-widest">
+          {bonus.badge}
+        </div>
+
+        <!-- Imagem ilustrativa do bônus (placeholder) -->
+        <div class="aspect-video bg-gradient-to-br from-accent-100 to-brand-100 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 pattern-grid opacity-20"></div>
+          <Icon name={bonus.badge === 'Bônus 1' ? 'sparkles' : 'calendar'} size={64} class="text-accent-700" />
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex items-baseline justify-between gap-3">
+            <h3 class="text-2xl font-display font-semibold text-neutral-900">
+              {bonus.title}
+            </h3>
+            <div class="text-right flex-shrink-0">
+              <div class="text-xs text-neutral-500 line-through">de</div>
+              <div class="font-display font-bold text-xl text-accent-700">
+                {bonus.value}
+              </div>
+            </div>
+          </div>
+
+          <p class="text-neutral-700 leading-relaxed">
+            {bonus.description}
+          </p>
+
+          <ul class="space-y-2 pt-2 border-t border-neutral-200" role="list">
+            {bonus.includes.map((item) => (
+              <li class="flex items-start gap-2 text-sm">
+                <Icon name="check" size={16} class="flex-shrink-0 mt-0.5 text-success-500" />
+                <span class="text-neutral-700">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="text-center mt-10 reveal">
+    <p class="inline-flex items-center gap-2 bg-white border border-accent-200 text-accent-700 px-5 py-2 rounded-full font-semibold shadow-sm">
+      <Icon name="gift" size={18} />
+      {bonusesData.totalValue}
+    </p>
+  </div>
+</SectionWrapper>

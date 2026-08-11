@@ -1,0 +1,38 @@
+---
+/**
+ * PainPoints — Identificação emocional com 4 cards de dor.
+ * Cada card tem ícone line-art coerente com a paleta.
+ */
+import Icon from '../ui/Icon.astro';
+import SectionWrapper from '../ui/SectionWrapper.astro';
+import SectionHeading from '../ui/SectionHeading.astro';
+import { painPointsData } from '../../data/content';
+---
+
+<SectionWrapper id="dor" theme="soft" ariaLabelledby="pain-heading">
+  <SectionHeading
+    eyebrow={painPointsData.eyebrow}
+    title={painPointsData.headline}
+    align="center"
+  />
+
+  <ul
+    class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-12 md:mt-16 stagger"
+    role="list"
+  >
+    {painPointsData.cards.map((card) => (
+      <li class="card card--hover reveal border border-neutral-100">
+        <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-500 flex items-center justify-center mb-4">
+          <Icon name={card.icon as any} size={24} />
+        </div>
+        <p class="font-semibold text-neutral-900 leading-snug">
+          {card.title}
+        </p>
+      </li>
+    ))}
+  </ul>
+
+  <p class="text-center mt-10 md:mt-12 text-neutral-600 italic reveal">
+    {painPointsData.footerCta}
+  </p>
+</SectionWrapper>

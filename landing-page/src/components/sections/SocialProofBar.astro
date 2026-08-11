@@ -1,0 +1,36 @@
+---
+/**
+ * SocialProofBar — Barra de métricas/logo com prova social quantificada.
+ * Aparece imediatamente após o hero para reforçar autoridade.
+ */
+import { socialProofBarData } from '../../data/content';
+---
+
+<section
+  class="bg-white border-y border-neutral-200 py-8 md:py-10"
+  aria-labelledby="social-proof-headline"
+>
+  <div class="container">
+    <p
+      id="social-proof-headline"
+      class="text-center text-sm uppercase tracking-widest text-neutral-500 font-semibold mb-6 reveal"
+    >
+      {socialProofBarData.headline}
+    </p>
+    <ul
+      class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 stagger"
+      role="list"
+    >
+      {socialProofBarData.metrics.map((metric) => (
+        <li class="text-center reveal">
+          <div class="font-display text-3xl md:text-5xl font-bold text-brand-700 tabular-nums">
+            {metric.value}
+          </div>
+          <div class="text-sm text-neutral-600 mt-1 leading-tight">
+            {metric.label}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

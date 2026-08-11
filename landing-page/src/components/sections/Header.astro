@@ -1,0 +1,78 @@
+---
+/**
+ * Header — Sticky header com logo + CTA âncora.
+ * Aparece transparente no topo, ganha fundo sólido ao rolar.
+ */
+import Button from '../ui/Button.astro';
+import { siteConfig } from '../../data/content';
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+>
+  <div class="container flex items-center justify-between h-16 md:h-20">
+    <a
+      href="/"
+      class="flex items-center gap-2 group"
+      aria-label={`${siteConfig.name} — página inicial`}
+    >
+      <span class="font-display font-bold text-lg md:text-xl text-white">
+        Marília <span class="text-accent-400">Cordeiro</span>
+      </span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8" aria-label="Navegação principal">
+      <a href="#metodo" class="text-sm text-white/80 hover:text-white transition-colors">
+        Método
+      </a>
+      <a href="#conteudo" class="text-sm text-white/80 hover:text-white transition-colors">
+        Conteúdo
+      </a>
+      <a href="#depoimentos" class="text-sm text-white/80 hover:text-white transition-colors">
+        Depoimentos
+      </a>
+      <a href="#faq" class="text-sm text-white/80 hover:text-white transition-colors">
+        FAQ
+      </a>
+    </nav>
+
+    <Button
+      variant="primary"
+      href="#oferta"
+      size="md"
+      showArrow={false}
+      data-track-cta="header_sticky"
+    >
+      Quero meu acesso
+    </Button>
+  </div>
+</header>
+
+<script>
+  // Adiciona fundo ao rolar
+  const header = document.getElementById('site-header');
+  if (header) {
+    const handleScroll = () => {
+      if (window.scrollY > 80) {
+        header.classList.add('is-scrolled');
+      } else {
+        header.classList.remove('is-scrolled');
+      }
+    };
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }
+</script>
+
+<style>
+  #site-header {
+    background: transparent;
+  }
+  #site-header.is-scrolled {
+    background: rgba(30, 27, 75, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+</style>

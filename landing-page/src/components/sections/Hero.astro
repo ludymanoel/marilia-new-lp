@@ -1,0 +1,104 @@
+---
+/**
+ * Hero — Primeira dobra. Foco em LCP e copy magnética.
+ * VSL carregado via LiteYouTube (zero JS até o click).
+ */
+import Button from '../ui/Button.astro';
+import LiteYouTube from '../ui/LiteYouTube.astro';
+import Icon from '../ui/Icon.astro';
+import { heroData } from '../../data/content';
+---
+
+<section
+  id="hero"
+  class="relative bg-gradient-hero text-white overflow-hidden pt-24 md:pt-28 pb-12 md:pb-20"
+  aria-labelledby="hero-headline"
+>
+  <!-- Pattern SVG sutil de fundo -->
+  <div class="absolute inset-0 pattern-grid opacity-40 pointer-events-none" aria-hidden="true"></div>
+
+  <!-- Gradiente decorativo -->
+  <div
+    class="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full opacity-30 blur-3xl pointer-events-none"
+    style="background: radial-gradient(circle, #6366F1 0%, transparent 70%);"
+    aria-hidden="true"
+  ></div>
+
+  <div class="container relative">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <!-- Copy -->
+      <div class="reveal">
+        <span class="badge badge--neutral mb-6">
+          <Icon name="sparkles" size={14} />
+          {heroData.eyebrow}
+        </span>
+
+        <h1 id="hero-headline" class="text-white mb-6 max-w-2xl">
+          {heroData.headline.line1}
+          <br />
+          <span class="text-gradient-brand">{heroData.headline.line2Highlight}</span>
+        </h1>
+
+        <p class="text-lg md:text-xl text-neutral-200 mb-8 max-w-xl leading-relaxed">
+          {heroData.subheadline}
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mb-6">
+          <Button
+            variant="primary"
+            href={heroData.ctaPrimary.href}
+            size="lg"
+            data-track-cta="hero_primary"
+          >
+            <Icon name="play-circle" size={20} />
+            {heroData.ctaPrimary.text}
+          </Button>
+        </div>
+
+        <p class="text-sm text-neutral-300">
+          {heroData.microcopy}
+        </p>
+
+        <!-- Trust badges (mobile) -->
+        <ul class="flex flex-wrap gap-2 mt-6 lg:hidden">
+          {heroData.trustBadges.map((badge) => (
+            <li class="badge badge--neutral">
+              <Icon name="check" size={12} />
+              {badge}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- VSL -->
+      <div class="reveal">
+        <div class="relative">
+          <LiteYouTube
+            videoId={heroData.videoId}
+            title="Marília Cordeiro apresenta o Método Produtividade Sincera"
+          />
+          <!-- Caption sobreposto -->
+          <div class="absolute -bottom-3 left-4 right-4 bg-white rounded-lg shadow-lg p-4 flex items-center gap-3">
+            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-accent-100 flex items-center justify-center">
+              <Icon name="clock" size={20} class="text-accent-600" />
+            </div>
+            <div class="text-sm">
+              <div class="font-semibold text-neutral-900">8 minutos</div>
+              <div class="text-neutral-500">que vão mudar sua rotina</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trust badges (desktop) -->
+        <ul class="hidden lg:flex flex-wrap gap-2 mt-12">
+          {heroData.trustBadges.map((badge) => (
+            <li class="badge badge--neutral">
+              <Icon name="check" size={12} />
+              {badge}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

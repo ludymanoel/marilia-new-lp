@@ -1,0 +1,34 @@
+---
+/**
+ * Icon — Biblioteca SVG inline baseada em Lucide.
+ * Sem dependência externa. Renderiza com 24x24 stroke 1.75.
+ *
+ * @example <Icon name="play" class="w-6 h-6 text-accent-500" />
+ */
+import type { HTMLAttributes } from 'astro/types';
+import { iconPaths, type IconName } from './iconPaths';
+
+export interface Props extends HTMLAttributes<'svg'> {
+  name: IconName;
+  size?: number;
+}
+
+const { name, size = 24, class: className = '', ...rest } = Astro.props;
+const inner = iconPaths[name] || '';
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.75"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={className}
+  aria-hidden="true"
+  set:html={inner}
+  {...rest}
+/>

@@ -1,0 +1,121 @@
+---
+/**
+ * LiteYouTube — Embed do YouTube otimizado.
+ * Carrega APENAS thumbnail estática até o usuário clicar (LCP/INP safe).
+ * Substitui o iframe embed tradicional (que custa 500KB+ JS).
+ */
+export interface Props {
+  videoId: string;
+  title: string;
+  poster?: string;
+  class?: string;
+}
+
+const { videoId, title, poster, class: className = '' } = Astro.props;
+const thumbnail = poster || `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
+---
+
+<div
+  class:list={['lite-yt-embed', className]}
+  data-video-id={videoId}
+  data-title={title}
+  style={`background-image: url(${thumbnail});`}
+  role="button"
+  tabindex="0"
+  aria-label={`Reproduzir vídeo: ${title}`}
+>
+  <div class="lite-yt-play" aria-hidden="true">
+    <svg width="68" height="48" viewBox="0 0 68 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/>
+      <path d="M45 24 27 14v20" fill="#fff"/>
+    </svg>
+  </div>
+  <noscript>
+    <iframe
+      loading="lazy"
+      width="560"
+      height="315"
+      src={`https://www.youtube.com/embed/${videoId}`}
+      title={title}
+      frameborder="0"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </noscript>
+</div>
+
+<style>
+  .lite-yt-embed {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-size: cover;
+    background-position: center;
+    background-color: #000;
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    transition: transform 300ms var(--ease-out-quart);
+  }
+  .lite-yt-embed:hover {
+    transform: scale(1.01);
+  }
+  .lite-yt-embed:hover .lite-yt-play {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  .lite-yt-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 200ms var(--ease-out-quart);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+  }
+  .lite-yt-embed:focus-visible {
+    outline: 3px solid var(--color-accent-500);
+    outline-offset: 4px;
+  }
+</style>
+
+<script>
+  // Carregamento lazy do iframe — só quando o usuário clica
+  function activateLiteYouTube(el: HTMLElement) {
+    const videoId = el.dataset.videoId;
+    if (!videoId) return;
+    const iframe = document.createElement('iframe');
+    const title = el.dataset.title || 'YouTube video';
+    iframe.setAttribute('loading', 'lazy');
+    iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`);
+    iframe.setAttribute('title', title);
+    iframe.setAttribute('frameborder', '0');
+    iframe.style.border = '0';
+    iframe.setAttribute(
+      'allow',
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+    );
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.style.cssText = 'width: 100%; height: 100%; border: 0; position: absolute; inset: 0;';
+    el.innerHTML = '';
+    el.appendChild(iframe);
+    el.removeAttribute('role');
+    el.removeAttribute('tabindex');
+    el.removeAttribute('aria-label');
+  }
+
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const lite = target.closest('.lite-yt-embed') as HTMLElement | null;
+    if (lite) activateLiteYouTube(lite);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const target = e.target as HTMLElement;
+    const lite = target.closest('.lite-yt-embed') as HTMLElement | null;
+    if (lite) {
+      e.preventDefault();
+      activateLiteYouTube(lite);
+    }
+  });
+</script>

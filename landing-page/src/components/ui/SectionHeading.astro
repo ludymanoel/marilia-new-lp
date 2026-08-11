@@ -1,0 +1,35 @@
+---
+/**
+ * SectionHeading — Cabeçalho padronizado com eyebrow + título + subtítulo.
+ * Garante hierarquia visual consistente.
+ */
+export interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  invert?: boolean; // Para seções com fundo escuro
+}
+
+const { eyebrow, title, subtitle, align = 'center', invert = false } = Astro.props;
+const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
+const titleColor = invert ? 'text-white' : 'text-neutral-900';
+const subtitleColor = invert ? 'text-neutral-200' : 'text-neutral-600';
+const eyebrowColor = invert ? 'text-accent-300' : 'text-brand-600';
+---
+
+<header class:list={['max-w-3xl', alignClass, 'reveal']}>
+  {eyebrow && (
+    <span class:list={['eyebrow mb-4', eyebrowColor]}>
+      {eyebrow}
+    </span>
+  )}
+  <h2 class:list={[titleColor, 'mb-4']}>
+    {title}
+  </h2>
+  {subtitle && (
+    <p class:list={['text-lg leading-relaxed', subtitleColor]}>
+      {subtitle}
+    </p>
+  )}
+</header>

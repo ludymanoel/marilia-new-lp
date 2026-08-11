@@ -1,0 +1,31 @@
+---
+/**
+ * SectionWrapper — Envelope padrão de seção com anchor opcional.
+ * Garante espaçamento, max-width e classes de tema consistentes.
+ */
+export interface Props {
+  id?: string;
+  theme?: 'light' | 'soft' | 'gradient' | 'dark';
+  ariaLabelledby?: string;
+  containerClass?: string;
+}
+
+const { id, theme = 'light', ariaLabelledby, containerClass = '' } = Astro.props;
+
+const themeClass = {
+  light: '',
+  soft: 'section--soft',
+  gradient: 'section--gradient',
+  dark: 'section--dark bg-gradient-hero',
+}[theme];
+---
+
+<section
+  id={id}
+  class:list={['section', themeClass]}
+  aria-labelledby={ariaLabelledby}
+>
+  <div class:list={['container', containerClass]}>
+    <slot />
+  </div>
+</section>

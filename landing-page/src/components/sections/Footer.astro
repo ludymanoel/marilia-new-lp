@@ -1,0 +1,109 @@
+---
+/**
+ * Footer — Institucional + legal + social.
+ */
+import Icon from '../ui/Icon.astro';
+import { siteConfig } from '../../data/content';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-neutral-900 text-neutral-300 py-12 md:py-16">
+  <div class="container">
+    <div class="grid md:grid-cols-4 gap-8 md:gap-12 mb-10">
+      <!-- Logo + descrição -->
+      <div class="md:col-span-2">
+        <a href="/" class="inline-flex items-center gap-2 mb-4">
+          <span class="font-display font-bold text-xl text-white">
+            Marília <span class="text-accent-400">Cordeiro</span>
+          </span>
+        </a>
+        <p class="text-sm text-neutral-400 leading-relaxed max-w-md">
+          Engenheira, especialista em organização e gestão do tempo.
+          Há mais de 12 anos ajudando pessoas e empresas a recuperarem
+          o controle da própria rotina.
+        </p>
+      </div>
+
+      <!-- Institucional -->
+      <nav aria-label="Links institucionais">
+        <h3 class="text-xs uppercase tracking-widest text-white font-semibold mb-4">
+          Institucional
+        </h3>
+        <ul class="space-y-2 text-sm" role="list">
+          <li><a href="#sobre" class="hover:text-white transition-colors">Quem é Marília</a></li>
+          <li><a href="#metodo" class="hover:text-white transition-colors">O Método</a></li>
+          <li><a href="#depoimentos" class="hover:text-white transition-colors">Depoimentos</a></li>
+          <li>
+            <a href={siteConfig.contact.instagram} class="hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">
+              Instagram
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Legal -->
+      <nav aria-label="Links legais">
+        <h3 class="text-xs uppercase tracking-widest text-white font-semibold mb-4">
+          Legal
+        </h3>
+        <ul class="space-y-2 text-sm" role="list">
+          <li><a href="/termos" class="hover:text-white transition-colors">Termos de Uso</a></li>
+          <li><a href="/privacidade" class="hover:text-white transition-colors">Política de Privacidade</a></li>
+          <li><a href="/cookies" class="hover:text-white transition-colors">Política de Cookies</a></li>
+          <li>
+            <a href={`mailto:${siteConfig.contact.email}`} class="hover:text-white transition-colors">
+              Contato
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <hr class="border-neutral-800 mb-8" />
+
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div class="text-xs text-neutral-500">
+        © {year} Marília Cordeiro · CNPJ {siteConfig.contact.cnpj}
+        <br />
+        Todos os direitos reservados.
+      </div>
+
+      <ul class="flex gap-3" role="list">
+        <li>
+          <a
+            href={siteConfig.contact.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 hover:bg-accent-500 text-neutral-300 hover:text-neutral-900 transition-all"
+            aria-label="Instagram"
+          >
+            <Icon name="instagram" size={18} />
+          </a>
+        </li>
+        <li>
+          <a
+            href={siteConfig.contact.youtube}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 hover:bg-accent-500 text-neutral-300 hover:text-neutral-900 transition-all"
+            aria-label="YouTube"
+          >
+            <Icon name="youtube" size={18} />
+          </a>
+        </li>
+        <li>
+          <a
+            href={siteConfig.contact.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center justify-center w-10 h-10 rounded-full bg-neutral-800 hover:bg-accent-500 text-neutral-300 hover:text-neutral-900 transition-all"
+            aria-label="LinkedIn"
+          >
+            <Icon name="linkedin" size={18} />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</footer>

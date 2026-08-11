@@ -1,0 +1,44 @@
+---
+/**
+ * FinalCTA — Última chamada antes do footer.
+ * Headline emocional + CTA grande + selos.
+ */
+import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
+import SectionWrapper from '../ui/SectionWrapper.astro';
+import { finalCtaData } from '../../data/content';
+---
+
+<SectionWrapper theme="dark" ariaLabelledby="final-cta-heading" containerClass="text-center">
+  <div class="max-w-text mx-auto reveal">
+    <span class="badge badge--neutral mb-6">
+      <Icon name="sparkles" size={14} />
+      Última chamada
+    </span>
+
+    <h2 id="final-cta-heading" class="text-white mb-6">
+      {finalCtaData.headline}
+    </h2>
+
+    <p class="text-lg text-neutral-200 mb-10 leading-relaxed">
+      {finalCtaData.subheadline}
+    </p>
+
+    <div class="flex flex-col items-center gap-4">
+      <Button
+        variant="primary"
+        href={finalCtaData.cta.href}
+        external={true}
+        size="lg"
+        data-track-cta="final_cta"
+      >
+        <Icon name="rocket" size={20} />
+        {finalCtaData.cta.text}
+      </Button>
+
+      <p class="text-sm text-neutral-300">
+        {finalCtaData.microcopy}
+      </p>
+    </div>
+  </div>
+</SectionWrapper>

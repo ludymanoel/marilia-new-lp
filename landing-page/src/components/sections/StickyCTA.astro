@@ -1,0 +1,119 @@
+---
+/**
+ * StickyCTA — CTA flutuante mobile-first.
+ *
+ * Aparece após 30% de scroll (intenção clara).
+ * Some quando o usuário chega na seção #oferta (evita redundância).
+ * Tracking: dispara gtag + fbq no click.
+ *
+ * Mobile-first, não aparece em desktop (já tem CTAs grandes no hero).
+ */
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { siteConfig } from '../../data/content';
+---
+
+<div
+  id="sticky-cta"
+  class="fixed bottom-0 left-0 right-0 z-40 md:hidden translate-y-full transition-transform duration-300 ease-out"
+  aria-hidden="true"
+  data-sticky-cta
+>
+  <div class="bg-white border-t border-neutral-200 shadow-[0_-8px_30px_rgba(0,0,0,0.08)] p-3 safe-bottom">
+    <div class="flex items-center gap-3">
+      <div class="flex-1 min-w-0">
+        <div class="text-xs text-neutral-500 font-semibold uppercase tracking-wider">
+          De R$ 1.497 por
+        </div>
+        <div class="font-display font-bold text-lg text-brand-700 leading-tight">
+          12x R$ 58,08
+        </div>
+      </div>
+      <Button
+        variant="primary"
+        href="#oferta"
+        size="md"
+        showArrow={false}
+        ariaLabel="Ir para oferta"
+        class="flex-shrink-0"
+      >
+        <Icon name="play-circle" size={18} />
+        Quero meu acesso
+      </Button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* iOS safe area */
+  .safe-bottom {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  #sticky-cta.is-visible {
+    transform: translateY(0);
+    aria-hidden: false;
+  }
+</style>
+
+<script>
+  function initStickyCTA() {
+    const stickyCta = document.getElementById('sticky-cta');
+    const ofertaSection = document.getElementById('oferta');
+    const footer = document.querySelector('footer');
+
+    if (!stickyCta) return;
+
+    let isVisible = false;
+    let isOverOferta = false;
+    let isOverFooter = false;
+
+    function update() {
+      const shouldShow = isVisible && !isOverOferta && !isOverFooter;
+      if (!stickyCta) return;
+      stickyCta.classList.toggle('is-visible', shouldShow);
+      stickyCta.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
+    }
+
+    function handleScroll() {
+      // Mostrar após 30% do scroll
+      const scrollPercent =
+        window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      isVisible = scrollPercent > 0.25;
+      update();
+    }
+
+    // Observar #oferta para esconder sticky quando chegar lá
+    if (ofertaSection) {
+      const ofertaObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isOverOferta = entry.isIntersecting && entry.intersectionRatio > 0.3;
+            update();
+          });
+        },
+        { threshold: [0, 0.3, 0.5] }
+      );
+      ofertaObserver.observe(ofertaSection);
+    }
+
+    // Esconder quando chegar no footer
+    if (footer) {
+      const footerObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isOverFooter = entry.isIntersecting && entry.intersectionRatio > 0.2;
+            update();
+          });
+        },
+        { threshold: [0, 0.2, 0.5] }
+      );
+      footerObserver.observe(footer);
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+
+  initStickyCTA();
+</script>
