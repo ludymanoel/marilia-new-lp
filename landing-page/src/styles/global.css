@@ -2,36 +2,50 @@
 
 /*
  * Marilia Cordeiro — Design Tokens
+ * Brandbook oficial 2022 conforme /docs/Brandbook Completo_Marília Cordeiro_2022.pdf
+ * Paleta: #000154, #0678EA, #3DDAE7, #FCC103, #D3096E, #E8E6E7
+ * Tipografia: Config Rounded (principal) + Roboto (secundária)
  * =====================================================================
  */
 
 @theme {
-  /* Paleta: Brand (índigo profundo — confiança + modernidade) */
-  --color-brand-50:  #EEF2FF;
-  --color-brand-100: #E0E7FF;
-  --color-brand-200: #C7D2FE;
-  --color-brand-300: #A5B4FC;
-  --color-brand-400: #818CF8;
-  --color-brand-500: #6366F1;
-  --color-brand-600: #4F46E5;
-  --color-brand-700: #4338CA;
-  --color-brand-800: #3730A3;
-  --color-brand-900: #1E1B4B;
+  /* ============================================ */
+  /* PALETA OFICIAL — Brandbook Marília Cordeiro */
+  /* ============================================ */
 
-  /* Paleta: Accent (âmbar quente — urgência + calor humano) */
-  --color-accent-50:  #FFFBEB;
-  --color-accent-100: #FEF3C7;
-  --color-accent-200: #FDE68A;
-  --color-accent-300: #FCD34D;
-  --color-accent-400: #FBBF24;
-  --color-accent-500: #F59E0B;
-  --color-accent-600: #D97706;
-  --color-accent-700: #B45309;
+  /* Cores base oficiais (brandbook) */
+  --color-brand-900: #000154;    /* Azul marinho profundo — primary */
+  --color-brand-800: #001a7a;
+  --color-brand-700: #0033a9;
+  --color-brand-600: #004dd9;
+  --color-brand-500: #0678EA;    /* Azul claro — secondary */
+  --color-brand-400: #2b8fee;
+  --color-brand-300: #56a7f3;
+  --color-brand-200: #8fc5f8;
+  --color-brand-100: #c2ddfa;
+  --color-brand-50:  #e8f2fd;
 
-  /* Paleta: Neutral (warm gray — sofisticada, não fria) */
+  /* Ciano — accent cool */
+  --color-cyan-500: #3DDAE7;
+  --color-cyan-300: #7ee9f1;
+  --color-cyan-100: #d1f6f9;
+
+  /* Amarelo — CTA principal */
+  --color-yellow-700: #B59102;
+  --color-yellow-500: #FCC103;
+  --color-yellow-300: #fdd54b;
+  --color-yellow-100: #fdeeb9;
+
+  /* Magenta/Pink — accent warm */
+  --color-pink-700: #9B0650;
+  --color-pink-500: #D3096E;
+  --color-pink-300: #e34c95;
+  --color-pink-100: #f5c7dd;
+
+  /* Cinza claro (surface) */
   --color-neutral-50:  #FAFAF9;
   --color-neutral-100: #F5F5F4;
-  --color-neutral-200: #E7E5E4;
+  --color-neutral-200: #E8E6E7;  /* oficial */
   --color-neutral-300: #D6D3D1;
   --color-neutral-400: #A8A29E;
   --color-neutral-500: #78716C;
@@ -40,29 +54,42 @@
   --color-neutral-800: #292524;
   --color-neutral-900: #1C1917;
 
-  /* Status */
-  --color-success-100: #D1FAE5;
+  /* Status (sem oficial — derivados) */
   --color-success-500: #10B981;
+  --color-success-100: #D1FAE5;
   --color-success-700: #065F46;
   --color-error-500: #EF4444;
-  --color-error-700: #B91C1C;
-  --color-warning-500: #EAB308;
 
-  /* Tipografia */
-  --font-display: 'Fraunces', 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  /* Aliases — "accent" mapeia para "yellow" (cor principal de CTA do brandbook) */
+  --color-accent-50:  #FFFBEB;
+  --color-accent-100: #fdeeb9;
+  --color-accent-200: #fdd54b;
+  --color-accent-300: #FCC103;
+  --color-accent-400: #B59102;
+  --color-accent-500: #FCC103;
+  --color-accent-600: #B59102;
+  --color-accent-700: #B59102;
+  --color-accent-800: #8A6E01;
+  --color-accent-900: #654F01;
+
+  /* ============================================ */
+  /* TIPOGRAFIA OFICIAL — Config Rounded */
+  /* ============================================ */
+
+  --font-display: 'Config Rounded', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Config Rounded', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Roboto Mono', 'JetBrains Mono', monospace;
 
   /* Animações */
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Sombras com warmth */
-  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04);
-  --shadow-medium: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 24px rgba(0, 0, 0, 0.06);
-  --shadow-large: 0 10px 15px rgba(0, 0, 0, 0.06), 0 20px 40px rgba(0, 0, 0, 0.08);
-  --shadow-glow-accent: 0 0 40px rgba(245, 158, 11, 0.35);
-  --shadow-glow-brand: 0 0 40px rgba(99, 102, 241, 0.25);
+  --shadow-soft: 0 1px 3px rgba(0, 1, 84, 0.06), 0 4px 12px rgba(0, 1, 84, 0.04);
+  --shadow-medium: 0 4px 6px rgba(0, 1, 84, 0.06), 0 10px 24px rgba(0, 1, 84, 0.08);
+  --shadow-large: 0 10px 15px rgba(0, 1, 84, 0.08), 0 20px 40px rgba(0, 1, 84, 0.10);
+  --shadow-glow-yellow: 0 0 40px rgba(252, 193, 3, 0.40);
+  --shadow-glow-brand: 0 0 40px rgba(6, 120, 234, 0.25);
 
   /* Container */
   --container-sm: 640px;
@@ -72,16 +99,12 @@
   --container-2xl: 1408px;
 }
 
-/* Camada base
-   ===================================================================== */
+# Camada base
+# =====================================================================
 
 @layer base {
-  /* Reset moderno */
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+  /* Reset */
+  *, *::before, *::after { box-sizing: border-box; }
 
   html {
     -webkit-text-size-adjust: 100%;
@@ -94,9 +117,7 @@
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -113,107 +134,96 @@
     min-height: 100vh;
   }
 
-  /* Hierarquia tipográfica */
+  /* Hierarquia — todos em Config Rounded */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.02em;
     margin: 0;
     color: var(--color-neutral-900);
   }
 
-  h1 { font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem); font-weight: 700; letter-spacing: -0.035em; }
+  h1 { font-size: clamp(2.25rem, 5vw + 1rem, 4.5rem); letter-spacing: -0.035em; }
   h2 { font-size: clamp(1.875rem, 3vw + 1rem, 3rem); }
   h3 { font-size: clamp(1.5rem, 2vw + 1rem, 2.25rem); }
   h4 { font-size: clamp(1.25rem, 1.5vw + 0.75rem, 1.5rem); }
 
   p { margin: 0; }
+  a { color: inherit; text-decoration: none; transition: color 200ms var(--ease-out-quart); }
 
-  a {
-    color: inherit;
-    text-decoration: none;
-    transition: color 200ms var(--ease-out-quart);
-  }
-
-  /* Focus visível para A11y (WCAG 2.4.7) */
   :focus-visible {
-    outline: 3px solid var(--color-accent-500);
+    outline: 3px solid var(--color-yellow-500);
     outline-offset: 3px;
     border-radius: 4px;
   }
 
-  /* Imagens responsivas */
-  img, svg, video {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
+  img, svg, video { max-width: 100%; height: auto; display: block; }
+  button { font-family: inherit; font-size: inherit; cursor: pointer; }
 
-  /* Botões nativos reset */
-  button {
-    font-family: inherit;
-    font-size: inherit;
-    cursor: pointer;
-  }
-
-  /* Containers utilitários */
   .container {
     width: 100%;
     margin-inline: auto;
     padding-inline: 1.25rem;
     max-width: var(--container-xl);
   }
-
-  @media (min-width: 768px) {
-    .container { padding-inline: 2rem; }
-  }
+  @media (min-width: 768px) { .container { padding-inline: 2rem; } }
 }
 
-/* Utilitários
-   ===================================================================== */
+# Utilitários
+# =====================================================================
 
 @layer utilities {
-  /* Gradientes do design system */
+  /* Gradientes oficiais */
   .bg-gradient-hero {
     background:
-      radial-gradient(ellipse at top right, rgba(99, 102, 241, 0.15), transparent 50%),
-      radial-gradient(ellipse at bottom left, rgba(245, 158, 11, 0.10), transparent 50%),
-      linear-gradient(135deg, #1E1B4B 0%, #312E81 100%);
+      radial-gradient(ellipse at top right, rgba(6, 120, 234, 0.18), transparent 55%),
+      radial-gradient(ellipse at bottom left, rgba(211, 9, 110, 0.10), transparent 55%),
+      linear-gradient(135deg, #000154 0%, #001a7a 100%);
   }
 
   .bg-gradient-offer {
     background:
-      radial-gradient(ellipse at top, rgba(245, 158, 11, 0.20), transparent 60%),
-      linear-gradient(135deg, #1E1B4B 0%, #312E81 50%, #1E1B4B 100%);
+      radial-gradient(ellipse at top, rgba(252, 193, 3, 0.22), transparent 60%),
+      linear-gradient(135deg, #000154 0%, #0033a9 50%, #000154 100%);
   }
 
   .bg-gradient-soft {
-    background: linear-gradient(180deg, #FAFAF9 0%, #FEF3C7 100%);
+    background: linear-gradient(180deg, #FAFAF9 0%, #fdeeb9 100%);
+  }
+
+  .bg-gradient-fractal {
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(6, 120, 234, 0.08) 0%, transparent 30%),
+      radial-gradient(circle at 80% 40%, rgba(211, 9, 110, 0.06) 0%, transparent 25%),
+      radial-gradient(circle at 40% 80%, rgba(252, 193, 3, 0.08) 0%, transparent 30%);
   }
 
   /* Text gradient */
-  .text-gradient-brand {
-    background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+  .text-gradient-yellow {
+    background: linear-gradient(135deg, #FCC103 0%, #fdd54b 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
   }
 
-  /* Animação reveal on scroll */
+  .text-gradient-brand {
+    background: linear-gradient(135deg, #0678EA 0%, #3DDAE7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Reveal on scroll */
   .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 600ms var(--ease-out-quart), transform 600ms var(--ease-out-quart);
   }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Stagger para filhos */
   .stagger > * {
     opacity: 0;
     transform: translateY(16px);
@@ -226,24 +236,23 @@
   .stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateY(0); }
   .stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
 
-  /* Botão CTA primário com pulse sutil (única animação contínua permitida) */
+  /* Pulse attention (única animação contínua permitida) */
   .pulse-attention {
     animation: pulse-attention 3s var(--ease-out-quart) infinite;
   }
   @keyframes pulse-attention {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.35); }
-    50% { box-shadow: 0 0 0 12px rgba(245, 158, 11, 0); }
+    0%, 100% { box-shadow: 0 0 0 0 rgba(252, 193, 3, 0.35); }
+    50% { box-shadow: 0 0 0 12px rgba(252, 193, 3, 0); }
   }
 
-  /* Pattern SVG sutil para backgrounds */
-  .pattern-grid {
+  /* Pattern fractal de fundo (quadrados brandbook) */
+  .pattern-fractal {
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
+      radial-gradient(circle, rgba(0, 1, 84, 0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
-  /* Skip link para A11y */
+  /* Skip link */
   .skip-link {
     position: absolute;
     top: -100px;
@@ -256,18 +265,15 @@
     font-weight: 600;
     transition: top 200ms;
   }
-  .skip-link:focus {
-    top: 1rem;
-  }
+  .skip-link:focus { top: 1rem; }
 
-  /* Container helpers */
   .max-w-prose { max-width: 65ch; }
   .max-w-narrow { max-width: 720px; }
   .max-w-text { max-width: 540px; }
 }
 
-/* Componentes
-   ===================================================================== */
+# Componentes
+# =====================================================================
 
 @layer components {
   /* Botões */
@@ -293,17 +299,15 @@
   }
 
   .btn--primary {
-    background: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
-    color: var(--color-neutral-900);
-    box-shadow: var(--shadow-glow-accent);
+    background: linear-gradient(135deg, #FCC103 0%, #fdd54b 100%);
+    color: var(--color-brand-900);
+    box-shadow: var(--shadow-glow-yellow);
   }
   .btn--primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 50px rgba(245, 158, 11, 0.55);
+    box-shadow: 0 0 50px rgba(252, 193, 3, 0.55);
   }
-  .btn--primary:active {
-    transform: translateY(0);
-  }
+  .btn--primary:active { transform: translateY(0); }
 
   .btn--secondary {
     background: rgba(255, 255, 255, 0.08);
@@ -318,12 +322,12 @@
 
   .btn--ghost {
     background: white;
-    color: var(--color-brand-800);
+    color: var(--color-brand-900);
     border: 1px solid var(--color-neutral-200);
   }
   .btn--ghost:hover {
-    border-color: var(--color-brand-300);
-    color: var(--color-brand-900);
+    border-color: var(--color-brand-500);
+    color: var(--color-brand-600);
   }
 
   /* Badges */
@@ -343,8 +347,8 @@
     color: var(--color-brand-800);
   }
   .badge--accent {
-    background: var(--color-accent-100);
-    color: var(--color-accent-700);
+    background: var(--color-yellow-100);
+    color: var(--color-yellow-700);
   }
   .badge--success {
     background: var(--color-success-100);
@@ -365,9 +369,7 @@
     transition: transform 300ms var(--ease-out-quart),
                 box-shadow 300ms var(--ease-out-quart);
   }
-  @media (min-width: 768px) {
-    .card { padding: 2rem; }
-  }
+  @media (min-width: 768px) { .card { padding: 2rem; } }
   .card--hover:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-medium);
@@ -377,22 +379,16 @@
   .eyebrow {
     display: inline-block;
     font-size: 0.8125rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--color-brand-600);
   }
 
   /* Section */
-  .section {
-    padding-block: 4rem;
-  }
-  @media (min-width: 768px) {
-    .section { padding-block: 6rem; }
-  }
-  @media (min-width: 1024px) {
-    .section { padding-block: 7rem; }
-  }
+  .section { padding-block: 4rem; }
+  @media (min-width: 768px) { .section { padding-block: 6rem; } }
+  @media (min-width: 1024px) { .section { padding-block: 7rem; } }
 
   .section--dark {
     background: var(--color-brand-900);
@@ -402,15 +398,10 @@
     color: white;
   }
 
-  .section--soft {
-    background: var(--color-neutral-50);
-  }
+  .section--soft { background: var(--color-neutral-50); }
+  .section--gradient { background: linear-gradient(180deg, var(--color-neutral-50) 0%, var(--color-yellow-100) 100%); }
 
-  .section--gradient {
-    background: linear-gradient(180deg, var(--color-neutral-50) 0%, var(--color-accent-50) 100%);
-  }
-
-  /* Accordion (details/summary nativo, com styling) */
+  /* Accordion */
   .accordion-item {
     background: white;
     border: 1px solid var(--color-neutral-200);
@@ -419,7 +410,7 @@
     transition: border-color 200ms, box-shadow 200ms;
   }
   .accordion-item[open] {
-    border-color: var(--color-brand-300);
+    border-color: var(--color-brand-400);
     box-shadow: var(--shadow-soft);
   }
   .accordion-item summary {
@@ -440,13 +431,11 @@
     width: 24px;
     height: 24px;
     flex-shrink: 0;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234338CA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300678EA' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     transition: transform 200ms;
   }
-  .accordion-item[open] summary::after {
-    transform: rotate(180deg);
-  }
+  .accordion-item[open] summary::after { transform: rotate(180deg); }
   .accordion-item .accordion-content {
     padding: 0 1.5rem 1.5rem;
     color: var(--color-neutral-700);
@@ -456,4 +445,79 @@
     .accordion-item summary { padding: 1.5rem 2rem; font-size: 1.125rem; }
     .accordion-item .accordion-content { padding: 0 2rem 1.75rem; }
   }
+}
+
+/* ============================================ */
+/* FONT FACES — Config Rounded (local, self-hosted) */
+/* ============================================ */
+
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-ExtraLight.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-Text.otf') format('opentype');
+  font-weight: 450;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Config Rounded';
+  src: url('/fonts/ConfigRounded-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
 }

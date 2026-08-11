@@ -1,10 +1,10 @@
 ---
 /**
- * Header — Sticky header com logo + CTA âncora.
+ * Header — Sticky header com logo MC + CTA âncora.
  * Aparece transparente no topo, ganha fundo sólido ao rolar.
  */
 import Button from '../ui/Button.astro';
-import { siteConfig } from '../../data/content';
+import LogoMC from '../ui/LogoMC.astro';
 ---
 
 <header
@@ -14,12 +14,10 @@ import { siteConfig } from '../../data/content';
   <div class="container flex items-center justify-between h-16 md:h-20">
     <a
       href="/"
-      class="flex items-center gap-2 group"
-      aria-label={`${siteConfig.name} — página inicial`}
+      class="flex items-center group"
+      aria-label="Marília Cordeiro — página inicial"
     >
-      <span class="font-display font-bold text-lg md:text-xl text-white">
-        Marília <span class="text-accent-400">Cordeiro</span>
-      </span>
+      <LogoMC variant="light" size="sm" showText={true} />
     </a>
 
     <nav class="hidden md:flex items-center gap-8" aria-label="Navegação principal">
@@ -50,7 +48,6 @@ import { siteConfig } from '../../data/content';
 </header>
 
 <script>
-  // Adiciona fundo ao rolar
   const header = document.getElementById('site-header');
   if (header) {
     const handleScroll = () => {
@@ -66,11 +63,9 @@ import { siteConfig } from '../../data/content';
 </script>
 
 <style>
-  #site-header {
-    background: transparent;
-  }
+  #site-header { background: transparent; }
   #site-header.is-scrolled {
-    background: rgba(30, 27, 75, 0.85);
+    background: rgba(0, 1, 84, 0.92);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);

@@ -1,0 +1,142 @@
+---
+/**
+ * LogoMC — Logo oficial Marília Cordeiro.
+ *
+ * Componente SVG inline (Fractal + Wordmark) baseado nos arquivos
+ * do brandbook oficial. Substitui o uso de PNG por SVG para:
+ * - Carregamento instantâneo (sem request HTTP adicional)
+ * - Escalonamento perfeito em qualquer resolução
+ * - Personalização via CSS (cores, hover)
+ * - Peso ridículo (~1KB vs ~15KB do PNG)
+ *
+ * Variantes:
+ * - "color"     → fundo claro (aplicação primária)
+ * - "light"     → fundo escuro (aplicação secundária, branca)
+ * - "mono"      → apenas cor sólida (fallback)
+ * - "fractal"   → apenas o símbolo, sem texto
+ */
+
+export interface Props {
+  variant?: 'color' | 'light' | 'mono' | 'fractal';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  showText?: boolean;
+  class?: string;
+  ariaLabel?: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const {
+  variant = 'color',
+  size = 'md',
+  showText = true,
+  class: className = '',
+  ariaLabel = 'Marília Cordeiro',
+  loading = 'eager',
+} = Astro.props;
+
+// Cores oficiais do brandbook
+const COLORS = {
+  brand: '#000154',     // Azul marinho
+  brand2: '#0678EA',    // Azul claro
+  brand3: '#3DDAE7',    // Ciano
+  accent: '#FCC103',    // Amarelo
+  accent2: '#D3096E',   // Magenta
+  white: '#FFFFFF',
+  black: '#1C1917',
+};
+
+const palette = {
+  color: {
+    fractal1: COLORS.brand,
+    fractal2: COLORS.accent2,
+    fractal3: COLORS.accent,
+    fractal4: COLORS.brand2,
+    text: COLORS.brand,
+  },
+  light: {
+    fractal1: COLORS.white,
+    fractal2: COLORS.white,
+    fractal3: COLORS.white,
+    fractal4: COLORS.white,
+    text: COLORS.white,
+  },
+  mono: {
+    fractal1: 'currentColor',
+    fractal2: 'currentColor',
+    fractal3: 'currentColor',
+    fractal4: 'currentColor',
+    text: 'currentColor',
+  },
+  fractal: {
+    fractal1: COLORS.brand,
+    fractal2: COLORS.accent2,
+    fractal3: COLORS.accent,
+    fractal4: COLORS.brand2,
+    text: COLORS.brand,
+  },
+}[variant];
+
+const dimensions = {
+  sm: { w: 120, h: 40 },
+  md: { w: 180, h: 60 },
+  lg: { w: 240, h: 80 },
+  xl: { w: 320, h: 108 },
+}[size];
+
+const { w, h } = dimensions;
+
+const viewBoxWidth = showText ? 1130 : 650;
+const viewBoxHeight = 410;
+const finalHeight = h * (showText ? 1 : 0.7);
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width={w}
+  height={finalHeight}
+  viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
+  fill="none"
+  class={className}
+  aria-label={ariaLabel}
+  role="img"
+>
+  {showText && (
+    <g>
+      <text
+        x="430"
+        y="170"
+        font-family="'Config Rounded', 'Roboto', sans-serif"
+        font-size="240"
+        font-weight="700"
+        fill={palette.text}
+        text-anchor="start"
+        letter-spacing="-6"
+      >marília</text>
+
+      <text
+        x="430"
+        y="370"
+        font-family="'Config Rounded', 'Roboto', sans-serif"
+        font-size="240"
+        font-weight="700"
+        fill={palette.text}
+        text-anchor="start"
+        letter-spacing="-6"
+      >cordeiro</text>
+    </g>
+  )}
+
+  <g>
+    <rect x="120" y="20" width="280" height="280" rx="30" fill={palette.fractal1} />
+    <rect x="430" y="180" width="120" height="120" rx="16" fill={palette.fractal2} />
+    <rect x="240" y="320" width="160" height="60" rx="10" fill={palette.fractal3} />
+    <rect x="430" y="20" width="280" height="120" rx="16" fill={palette.fractal4} />
+  </g>
+</svg>
+
+<style>
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+</style>

@@ -38,19 +38,21 @@ export const siteConfig = {
 
 // ============================================================
 // HERO
+// Tom de voz: acessível, profissional, pragmático, prático, objetivo,
+// resolutivo e sincero. Sem exageros, sem mimimi. Caloroso, não coercivo.
 // ============================================================
 
 export const heroData = {
   eyebrow: 'Método Organização Sincera · +5.000 alunas',
   headline: {
-    line1: 'Você não precisa de mais um planner.',
-    line2Highlight: 'Você precisa de um método que caiba na vida real.',
+    line1: 'Organize a caixa.',
+    line2Highlight: 'Pra pensar dentro e fora dela.',
   },
   subheadline:
-    'Em 30 dias, o Método Produtividade Sincera te ensina a montar uma rotina sob medida — sem largar o trabalho, a família ou a vida social.',
-  videoId: 'xnAKf96lepM', // mesmo VSL da LP atual, mas carregado lite
+    'O Método Produtividade Sincera é o passo a passo pra você parar de improvisar a rotina e começar a viver com mais clareza, foco e tempo pro que importa.',
+  videoId: 'xnAKf96lepM',
   ctaPrimary: {
-    text: 'Quero começar agora',
+    text: 'Quero simplificar minha rotina',
     href: '#oferta',
   },
   microcopy: 'Acesso imediato · 7 dias de garantia · Compra segura',
@@ -98,7 +100,7 @@ export const painPointsData = {
     },
     {
       icon: 'clock-alert',
-      title: 'Tem a sensação crônica de que poderia estar fazendo mais.',
+      title: 'Fala “eu não tenho tempo” todo dia — mas o problema é outro.',
     },
   ],
   footerCta: 'Se você marcou pelo menos uma, continue ↓',
@@ -168,9 +170,9 @@ export const aboutMariliaData = {
 
 export const methodPillarsData = {
   eyebrow: 'O método em 4 pilares',
-  headline: 'Sonhatividade: do sonho à rotina, com método.',
+  headline: 'Especialista em simplificar — vai virar você.',
   subheadline:
-    'Quatro passos testados em mais de 5.000 pessoas. Não é força de vontade. É arquitetura da rotina.',
+    'Quatro passos testados em mais de 5.000 pessoas. Não é força de vontade. É arquitetura da rotina com base na fórmula SONHA.',
   pillars: [
     {
       number: '01',
@@ -208,8 +210,8 @@ export const methodPillarsData = {
 // ============================================================
 
 export const whoIsForData = {
-  eyebrow: 'Esse método é pra você se…',
-  headline: 'Você já tentou de tudo. Só falta o método certo.',
+  eyebrow: 'Esse método é pra você que…',
+  headline: 'Especialista em simplificar? A gente também é.',
   cards: [
     {
       avatar: 'carla',
@@ -325,8 +327,8 @@ export const courseModulesData = {
 
 export const bonusesData = {
   eyebrow: 'E tem mais',
-  headline: 'Dois bônus pra você começar com tudo.',
-  subheadline: 'Disponíveis só nesta condição especial.',
+  headline: 'Dois bônus pra ir além do método.',
+  subheadline: 'Conteúdo complementar pra acelerar seus resultados.',
   bonuses: [
     {
       badge: 'Bônus 1',
@@ -345,7 +347,7 @@ export const bonusesData = {
       title: 'Planners Organização Sincera',
       value: 'R$ 197',
       description:
-        'Planner físico ou digital com o passo a passo do método. Pronto pra usar no primeiro dia.',
+        'Os planners oficiais do método — físicos ou digitais, prontos pra usar no primeiro dia. Simples assim.',
       includes: [
         'Versão digital (Notion + PDF)',
         'Versão física pra imprimir',
@@ -494,11 +496,11 @@ export const faqData = {
 // ============================================================
 
 export const finalCtaData = {
-  headline: 'Daqui 30 dias, você vai olhar pra trás e agradecer por essa decisão.',
+  headline: 'Está dentro de você. Só falta o método.',
   subheadline:
-    'Você pode continuar como está — sobrecarregada, com culpa e sem tempo pra você. Ou pode dar o primeiro passo agora.',
+    'Você pode continuar improvisando — ou pode começar hoje, com o passo a passo que +5.000 pessoas já aplicaram.',
   cta: {
-    text: 'Quero me dar esse presente',
+    text: 'Quero começar agora',
     href: siteConfig.checkoutUrl,
   },
   microcopy: 'Acesso imediato · 7 dias de garantia · Compra 100% segura',
