@@ -9,9 +9,10 @@
 ## Stack
 
 - **Astro 5.x** — zero JS por padrão, islands onde precisa
+- **@astrojs/vercel/static** — adapter oficial para Vercel (zero-config deploy)
 - **TailwindCSS 4.x** — design system via `@theme` no CSS
 - **TypeScript** — type-safe no data layer
-- **Schema.org Course** — SEO estruturado
+- **Schema.org** (Course + FAQPage + BreadcrumbList + Organization)
 - **Lite YouTube Embed** — thumbnail lazy, iframe só no click
 
 ## Performance esperada
@@ -21,8 +22,8 @@
 | LCP           | ~4.0s       | **<1.5s**          |
 | INP           | ~250ms      | **<100ms**         |
 | CLS           | 0.15        | **<0.05**          |
-| HTML size     | 230KB       | **<50KB**          |
-| JS requests   | ~20         | **2–3**            |
+| HTML size (gz) | 230KB       | **~20KB**          |
+| JS (gz)       | ~5MB        | **~3KB**           |
 | Lighthouse P  | ~55         | **95+**            |
 | Lighthouse A  | ~75         | **100**            |
 
@@ -32,44 +33,26 @@
 landing-page/
 ├── public/
 │   ├── favicon.svg
-│   └── robots.txt
+│   ├── robots.txt
+│   └── tiktok-pixel.js          # TikTok Pixel (arquivo externo)
 ├── src/
 │   ├── components/
-│   │   ├── animations/         # (reservado para Lottie, SVG interativos)
-│   │   ├── sections/           # 14 seções da LP
-│   │   │   ├── Header.astro
-│   │   │   ├── Hero.astro
-│   │   │   ├── SocialProofBar.astro
-│   │   │   ├── PainPoints.astro
-│   │   │   ├── BeforeAfter.astro
-│   │   │   ├── AboutMarilia.astro
-│   │   │   ├── MethodPillars.astro
-│   │   │   ├── WhoIsFor.astro
-│   │   │   ├── CourseModules.astro
-│   │   │   ├── Bonuses.astro
-│   │   │   ├── Testimonials.astro
-│   │   │   ├── OfferCard.astro
-│   │   │   ├── Guarantee.astro
-│   │   │   ├── FAQ.astro
-│   │   │   ├── FinalCTA.astro
-│   │   │   └── Footer.astro
-│   │   └── ui/                 # Componentes reutilizáveis
-│   │       ├── Button.astro
-│   │       ├── SectionWrapper.astro
-│   │       ├── SectionHeading.astro
-│   │       ├── Icon.astro
-│   │       ├── LiteYouTube.astro
-│   │       └── CountdownTimer.astro
+│   │   ├── sections/            # 19 seções (16 originais + 3 produção)
+│   │   └── ui/                  # Componentes reutilizáveis
+│   ├── scripts/
+│   │   └── tracking.ts          # UTM + pixels + conversions
 │   ├── data/
-│   │   └── content.ts          # Todo o copy + dados estruturados
+│   │   └── content.ts           # Todo o copy + dados
 │   ├── layouts/
-│   │   └── Layout.astro        # HTML shell + SEO + Analytics
+│   │   └── Layout.astro         # HTML shell + 4 schemas
 │   ├── pages/
-│   │   └── index.astro         # Página principal
+│   │   └── index.astro
 │   └── styles/
-│       └── global.css          # Design tokens + utilities + components
-├── astro.config.mjs
-├── package.json
+│       └── global.css           # Tokens + utilities + components
+├── astro.config.mjs             # + adapter Vercel
+├── vercel.json                  # Headers + cache (isolated deploy)
+├── package.json                 # + @astrojs/vercel
+├── DEPLOY.md                    # Guia completo de deploy
 └── tsconfig.json
 ```
 
@@ -80,46 +63,54 @@ landing-page/
 npm install
 
 # 2. Iniciar dev server (hot reload)
-npm run dev
+npm run dev          # http://localhost:4321
 
 # 3. Verificar tipos
-npm run check
+npm run check        # Esperado: 0 erros
 
 # 4. Build de produção
-npm run build
+npm run build        # Gera dist/ + .vercel/output/
 
 # 5. Preview do build
-npm run preview
+python3 serve.py     # http://localhost:8000 (com gzip + cache)
 ```
 
 ## Deploy
 
-### Vercel (recomendado)
-```bash
-vercel --prod
-```
+📘 **Guia completo:** veja [DEPLOY.md](./DEPLOY.md)
 
-O `astro.config.mjs` já está pronto para auto-detect da Vercel.
+**TL;DR (Cenário A — recomendado):**
 
-### Netlify
 ```bash
-netlify deploy --prod --dir=dist
+# 1. Criar repo no GitHub (ex: produtividade-sincera)
+# 2. Push do conteúdo de landing-page/ apenas:
+cd "/home/ludy/projetos/Marilia Cordeiro/landing-page"
+git init && git add . && git commit -m "feat: LP v2"
+git branch -M main
+git remote add origin https://github.com/SEU-USER/produtividade-sincera.git
+git push -u origin main
+
+# 3. Importar em vercel.com/new
+#    - Framework Preset: Astro (auto)
+#    - Root: ./
+#    - Deploy!
 ```
 
 ## Documentação adicional
 
-- `../docs/01-diagnostico-lp-atual.md` — Análise da LP atual
-- `../docs/02-persona-e-pesquisa.md` — Persona mapeada
+- `../docs/01-diagnostico-lp-atual.md` — Análise da LP original
+- `../docs/02-persona-e-pesquisa.md` — Persona Carolina
 - `../docs/03-estrutura-redesign.md` — Nova arquitetura
 - `../docs/04-design-spec.md` — Moodboard e tokens
-- `../docs/05-copywriting.md` — Copy framework completo
+- `../docs/05-copywriting.md` — Copy framework
 - `../docs/06-analise-comparativa.md` — Antes vs Depois
+- `../docs/08-refinamentos-producao.md` — Features v2
 
 ## Próximos passos
 
-1. **Substituir placeholders:** fotos da Marília e das alunas
-   (otimizar para WebP/AVIF, usar `<Image>` do Astro)
-2. **A/B test do hero:** testar Headline A vs B
-3. **Exit-intent popup** com order bump (R$797 com 1 ano de mentoria)
-4. **Server-side tracking** via GTM Stape para reduzir impacto no INP
-5. **Lighthouse CI** no pipeline de deploy (bloquear se < 90)
+1. **CRÍTICO:** Atualizar `GOOGLE_ADS_CONVERSION_LABEL` em `src/scripts/tracking.ts`
+2. Substituir placeholders de imagem (Marília + alunas)
+3. Adicionar `/og-image.png` real (1200×630)
+4. Configurar cupom `SAIR5` no Kiwify para exit intent
+5. Setup A/B test contra LP original
+6. Lighthouse CI no pipeline de deploy
