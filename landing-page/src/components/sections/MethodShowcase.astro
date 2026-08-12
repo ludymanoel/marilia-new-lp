@@ -1,35 +1,37 @@
 ---
 /**
  * MethodShowcase — Galeria de mockups reais do curso.
- * Mostra o método em diferentes dispositivos (sonhatividade, smartphone, tablet,
- * comunidade, etc.).
+ * Conforme HTML validado: cards 1 e 2 com imagem, cards 3 e 4 sem imagem.
  */
 import SectionWrapper from '../ui/SectionWrapper.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
-import Icon from '../ui/Icon.astro';
 
-const mockups = [
+const items = [
   {
     src: '/images/mockups/sonhatividade-1.webp',
     alt: 'Sonhatividade — fórmula do método',
+    hasImage: true,
     title: 'A fórmula SONHA',
     description: 'Sonhar, Organizar, Narrar, Haver, Agir. O framework que transforma intenção em execução.',
   },
   {
     src: '/images/mockups/smartphone.webp',
     alt: 'Curso no smartphone',
+    hasImage: true,
     title: 'Aprenda no seu ritmo',
     description: 'Aulas de 5 a 15 minutos, no celular, tablet ou notebook. Pelo computador, mais concentração.',
   },
   {
-    src: '/images/mockups/curso-1.webp',
-    alt: 'Curso Produtividade Sincera em dispositivos',
+    src: '',
+    alt: '',
+    hasImage: false,
     title: 'Onde você estiver',
     description: 'Método completo em multi-formato. Estude no seu ritmo, com o poder do replay.',
   },
   {
-    src: '/images/mockups/comunidade.webp',
-    alt: 'Comunidade de alunas',
+    src: '',
+    alt: '',
+    hasImage: false,
     title: 'Comunidade ativa',
     description: 'Você não está sozinha. Troque experiências, tire dúvidas, celebre conquistas.',
   },
@@ -45,25 +47,29 @@ const mockups = [
   />
 
   <div class="grid sm:grid-cols-2 gap-6 md:gap-8 mt-12 md:mt-16 max-w-5xl mx-auto stagger">
-    {mockups.map((mockup, idx) => (
+    {items.map((item) => (
       <article class="group reveal">
         <div class="rounded-2xl overflow-hidden bg-white shadow-soft hover:shadow-medium transition-shadow duration-300">
-          <div class="relative aspect-[4/3] overflow-hidden">
-            <img
-              src={mockup.src}
-              alt={mockup.alt}
-              loading="lazy"
-              decoding="async"
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
+          {item.hasImage ? (
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={item.src}
+                alt={item.alt}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+          ) : (
+            <div class="relative aspect-[4/3] overflow-hidden"></div>
+          )}
         </div>
         <div class="mt-4 px-1">
           <h3 class="text-xl font-display font-semibold text-neutral-900 mb-1">
-            {mockup.title}
+            {item.title}
           </h3>
           <p class="text-sm text-neutral-600 leading-relaxed">
-            {mockup.description}
+            {item.description}
           </p>
         </div>
       </article>
