@@ -3,7 +3,6 @@
  * Footer — Institucional + legal + social.
  */
 import Icon from '../ui/Icon.astro';
-import LogoMC from '../ui/LogoMC.astro';
 import { siteConfig } from '../../data/content';
 
 const year = new Date().getFullYear();
@@ -14,7 +13,14 @@ const year = new Date().getFullYear();
     <div class="grid md:grid-cols-4 gap-8 md:gap-12 mb-10">
       <!-- Logo + descrição -->
       <div class="md:col-span-2">
-        <LogoMC variant="light" size="md" showText={true} class="mb-4" />
+        <img
+          src="/images/logo-mc.png"
+          alt="Marília Cordeiro"
+          width="1000"
+          height="1000"
+          class="mb-4 h-14 md:h-16 w-auto"
+          loading="lazy"
+        />
         <p class="text-sm text-neutral-400 leading-relaxed max-w-md mt-4">
           Engenheira, especialista em organização e gestão do tempo.
           Há mais de 12 anos ajudando pessoas e empresas a recuperarem

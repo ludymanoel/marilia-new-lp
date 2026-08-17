@@ -4,7 +4,6 @@
  * Aparece transparente no topo, ganha fundo sólido ao rolar.
  */
 import Button from '../ui/Button.astro';
-import LogoMC from '../ui/LogoMC.astro';
 ---
 
 <header
@@ -17,7 +16,15 @@ import LogoMC from '../ui/LogoMC.astro';
       class="flex items-center group"
       aria-label="Marília Cordeiro — página inicial"
     >
-      <LogoMC variant="light" size="sm" showText={true} />
+      <img
+        src="/images/logo-mc.png"
+        alt="Marília Cordeiro"
+        width="1000"
+        height="1000"
+        class="h-10 md:h-12 w-auto"
+        loading="eager"
+        fetchpriority="high"
+      />
     </a>
 
     <nav class="hidden md:flex items-center gap-8" aria-label="Navegação principal">
