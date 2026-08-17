@@ -2,21 +2,16 @@
 /**
  * LogoMC — Logo oficial Marília Cordeiro.
  *
- * Recriado a partir do brandbook oficial. Fractal com 4 cores:
- * - Marinho (#000154) - quadrado grande
- * - Rosa (#D3096E) - quadrado médio superior direito
- * - Amarelo (#FCC103) - quadrado pequeno inferior
- * - Azul claro (#0678EA) - quadrado horizontal inferior direito
+ * Wordmark tipográfico "marília cordeiro" em SVG vetorial.
  *
  * Variantes:
- * - "color" → fundo claro (cores originais)
- * - "light" → fundo escuro (todas brancas)
+ * - "color" → fundo claro (texto marinho)
+ * - "light" → fundo escuro (texto branco)
  * - "mono" → cor sólida via currentColor
- * - "fractal" → apenas símbolo, sem texto
  */
 
 export interface Props {
-  variant?: 'color' | 'light' | 'mono' | 'fractal';
+  variant?: 'color' | 'light' | 'mono';
   size?: 'sm' | 'md' | 'lg' | 'xl';
   showText?: boolean;
   class?: string;
@@ -34,41 +29,13 @@ const {
 // Cores oficiais do brandbook
 const COLORS = {
   brand: '#000154',
-  brand2: '#0678EA',
-  accent: '#FCC103',
-  accent2: '#D3096E',
   white: '#FFFFFF',
 };
 
 const palette = {
-  color: {
-    fractal1: COLORS.brand,
-    fractal2: COLORS.accent2,
-    fractal3: COLORS.accent,
-    fractal4: COLORS.brand2,
-    text: COLORS.brand,
-  },
-  light: {
-    fractal1: COLORS.white,
-    fractal2: COLORS.white,
-    fractal3: COLORS.white,
-    fractal4: COLORS.white,
-    text: COLORS.white,
-  },
-  mono: {
-    fractal1: 'currentColor',
-    fractal2: 'currentColor',
-    fractal3: 'currentColor',
-    fractal4: 'currentColor',
-    text: 'currentColor',
-  },
-  fractal: {
-    fractal1: COLORS.brand,
-    fractal2: COLORS.accent2,
-    fractal3: COLORS.accent,
-    fractal4: COLORS.brand2,
-    text: COLORS.brand,
-  },
+  color: { text: COLORS.brand },
+  light: { text: COLORS.white },
+  mono: { text: 'currentColor' },
 }[variant];
 
 const dimensions = {
@@ -83,10 +50,6 @@ const { w, h } = dimensions;
 // Usando viewBox do PNG original (2080x756) mantém fidelidade ao brandbook
 const viewBoxWidth = 2080;
 const viewBoxHeight = 756;
-const fractalX = 60;
-const fractalY = 60;
-const fractalW = 636;
-const fractalH = 636;
 
 // Posição do wordmark (em coordenadas viewBox)
 const wordmarkX = 836;
@@ -136,14 +99,6 @@ const finalHeight = h;
       >cordeiro</text>
     </g>
   )}
-
-  {/* Fractal — símbolo de blocos de tempo (autossimilar) */}
-  <g aria-hidden="true">
-    <rect x={fractalX} y={fractalY} width={fractalW} height={fractalH} rx="60" fill={palette.fractal1} />
-    <rect x="836" y="400" width="280" height="280" rx="40" fill={palette.fractal2} />
-    <rect x="394" y="756" width="370" height="150" rx="25" fill={palette.fractal3} />
-    <rect x="836" y="60" width="650" height="280" rx="40" fill={palette.fractal4} />
-  </g>
 </svg>
 
 <style>
