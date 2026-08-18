@@ -1,7 +1,7 @@
 ---
 /**
  * MethodShowcase — Galeria de mockups reais do curso.
- * Conforme HTML validado: cards 1 e 2 com imagem, cards 3 e 4 sem imagem.
+ * Imagem em destaque (FER01065) abaixo do heading + 4 cards com imagem.
  */
 import SectionWrapper from '../ui/SectionWrapper.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
@@ -22,16 +22,16 @@ const items = [
     description: 'Aulas de 5 a 15 minutos, no celular, tablet ou notebook. Pelo computador, mais concentração.',
   },
   {
-    src: '',
-    alt: '',
-    hasImage: false,
+    src: '/images/mockups/fer00876.webp',
+    alt: 'Aluna aplicando o método',
+    hasImage: true,
     title: 'Onde você estiver',
     description: 'Método completo em multi-formato. Estude no seu ritmo, com o poder do replay.',
   },
   {
-    src: '',
-    alt: '',
-    hasImage: false,
+    src: '/images/mockups/metodos-de-estudo.webp',
+    alt: 'Métodos de estudo',
+    hasImage: true,
     title: 'Comunidade ativa',
     description: 'Você não está sozinha. Troque experiências, tire dúvidas, celebre conquistas.',
   },
@@ -45,6 +45,20 @@ const items = [
     subtitle="Aulas práticas, ferramentas autorais, comunidade ativa. Tudo o que você precisa pra organizar sua vida em 30 dias."
     align="center"
   />
+
+  <!-- Imagem em destaque (tamanho padrão) -->
+  <div class="reveal mt-10 md:mt-14">
+    <picture>
+      <source srcset="/images/mockups/fer01065.webp" type="image/webp" />
+      <img
+        src="/images/mockups/fer01065.jpg"
+        alt="Marília Cordeiro apresentando o método Produtividade Sincera"
+        loading="lazy"
+        decoding="async"
+        class="w-full h-auto rounded-2xl shadow-soft"
+      />
+    </picture>
+  </div>
 
   <div class="grid sm:grid-cols-2 gap-6 md:gap-8 mt-12 md:mt-16 max-w-5xl mx-auto stagger">
     {items.map((item) => (

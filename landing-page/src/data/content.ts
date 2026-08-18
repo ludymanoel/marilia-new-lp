@@ -20,7 +20,6 @@ export const siteConfig = {
     installments: 12,
     installmentValue: 70.07, // valor oficial da LP antiga
   },
-  paymentMethods: ['Cartão até 12x', 'Boleto', 'PIX'],
   contact: {
     email: 'contato@mariliacordeiro.com',
     instagram: 'https://instagram.com/mariliacordeiro',
@@ -426,11 +425,6 @@ export const offerData = {
     label: 'Oferta encerra em',
     durationHours: 24,
   },
-  paymentMethods: [
-    { name: 'Cartão', icon: 'card', detail: 'até 12x' },
-    { name: 'Boleto', icon: 'barcode', detail: 'à vista' },
-    { name: 'PIX', icon: 'pix', detail: 'à vista' },
-  ],
 } as const;
 
 // ============================================================

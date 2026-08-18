@@ -94,26 +94,20 @@ import { offerData } from '../../data/content';
         </p>
       </div>
 
-      <!-- Formas de pagamento -->
-      <div class="mt-8 pt-6 border-t border-neutral-100">
+      <!-- Formas de pagamento (imagem oficial com os elementos visuais) -->
+      <div class="mt-8 pt-6 border-t border-neutral-100 text-center">
         <p class="text-center text-xs uppercase tracking-widest text-neutral-500 font-semibold mb-3">
           Formas de pagamento
         </p>
-        <ul class="grid grid-cols-3 gap-3" role="list">
-          {offerData.paymentMethods.map((method) => (
-            <li class="flex flex-col items-center gap-1 text-center">
-              <div class="w-10 h-10 rounded-full bg-brand-50 text-brand-700 flex items-center justify-center">
-                <Icon name={
-                  method.icon === 'card' ? 'check' :
-                  method.icon === 'barcode' ? 'list' :
-                  method.icon === 'pix' ? 'rocket' : 'check'
-                } size={18} />
-              </div>
-              <span class="text-xs font-semibold text-neutral-900">{method.name}</span>
-              <span class="text-xs text-neutral-500">{method.detail}</span>
-            </li>
-          ))}
-        </ul>
+        <img
+          src="/images/image-2.webp"
+          alt="Formas de pagamento: cartão, boleto e PIX"
+          width="228"
+          height="16"
+          loading="lazy"
+          decoding="async"
+          class="mx-auto w-72 md:w-80 h-auto"
+        />
       </div>
 
       <!-- Selos de segurança -->
