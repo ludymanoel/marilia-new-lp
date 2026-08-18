@@ -39,3 +39,6 @@ tmp/
 
 # Docs (não precisa subir no deploy)
 docs/
+
+# Memória persistente de sessões (não versionar)
+.persistent-memory.md
