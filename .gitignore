@@ -45,3 +45,4 @@ docs/
 
 # Mídia bruta do cliente (grande demais para versionar — ex: "vídeo anuncio 50 off.mov")
 *.mov
+.vercel
