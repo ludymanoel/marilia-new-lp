@@ -13,7 +13,7 @@ export const siteConfig = {
   method: 'Organização Sincera',
   domain: 'produtividade-sincera',
   url: 'https://mariliacordeiro.com/produtividade-sincera/',
-  checkoutUrl: 'https://pay.kiwify.com.br/kiBE39E?coupon=OFERTAESPECIAL',
+  checkoutUrl: 'https://pay.kiwify.com.br/vLg5OEC',
   price: {
     current: 697,
     original: 1497,
@@ -210,7 +210,7 @@ export const methodPillarsData = {
 
 export const whoIsForData = {
   eyebrow: 'Esse método é pra você que…',
-  headline: 'Precisa Simplificar a Rotina na prática',
+  headline: 'Faz Vários Planejamentos e Não Consegue Segui-los',
   cards: [
     {
       avatar: 'carla',
@@ -252,7 +252,7 @@ export const courseModulesData = {
           description: 'Do sonho ao plano: a fórmula exclusiva do método.',
           lessons: [
             'A diferença entre sonho e objetivo',
-            'A fórmula SONHATIVIDADE (Sonhar, Organizar, Narrar, Haver, Agir)',
+            'A fórmula SONHATIVIDADE',
             'Construindo seu mapa de 12 meses',
             'Como dividir grandes sonhos em ações diárias',
           ],
