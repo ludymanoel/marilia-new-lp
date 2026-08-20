@@ -1,6 +1,6 @@
 ---
 /**
- * CourseModules — 6 módulos em accordion + mockup visual do curso.
+ * CourseModules — 10 módulos em 3 blocos temáticos (accordion) + mockup visual do curso.
  */
 import Icon from '../ui/Icon.astro';
 import SectionWrapper from '../ui/SectionWrapper.astro';
@@ -18,40 +18,54 @@ import { courseModulesData } from '../../data/content';
   />
 
   <div class="grid lg:grid-cols-[1fr_400px] gap-10 lg:gap-12 mt-12 md:mt-16 items-start">
-    <!-- Accordion de módulos -->
-    <div class="space-y-3 stagger">
-      {courseModulesData.modules.map((module) => (
-        <details class="accordion-item reveal group">
-          <summary>
-            <span class="flex items-center gap-4 flex-1">
-              <span class="font-display text-2xl font-bold text-brand-300 tabular-nums">
-                {module.number}
-              </span>
-              <span class="flex-1 text-left">
-                <span class="block">{module.title}</span>
-                <span class="block text-xs text-neutral-500 font-normal mt-0.5">
-                  {module.duration}
-                </span>
-              </span>
-            </span>
-            <Icon
-              name="chevron-down"
-              size={20}
-              class="flex-shrink-0 text-brand-500 transition-transform duration-200 group-open:rotate-180"
-            />
-          </summary>
-          <div class="accordion-content">
-            <p class="mb-4">{module.description}</p>
-            <ul class="space-y-2" role="list">
-              {module.lessons.map((lesson) => (
-                <li class="flex items-start gap-2 text-sm">
-                  <Icon name="play" size={16} class="flex-shrink-0 mt-0.5 text-brand-500" />
-                  <span>{lesson}</span>
-                </li>
-              ))}
-            </ul>
+    <!-- Accordion de módulos agrupado em blocos -->
+    <div class="space-y-10 stagger">
+      {courseModulesData.blocks.map((block) => (
+        <section aria-labelledby={`module-block-${block.title}`}>
+          <h3
+            id={`module-block-${block.title}`}
+            class="text-sm md:text-base text-brand-700 font-display font-semibold uppercase tracking-widest mb-4"
+          >
+            {block.title}
+          </h3>
+          <div class="space-y-3">
+            {block.modules.map((module) => (
+              <details class="accordion-item reveal group">
+                <summary>
+                  <span class="flex items-center gap-4 flex-1">
+                    <span class="font-display text-2xl font-bold text-brand-300 tabular-nums">
+                      {module.number}
+                    </span>
+                    <span class="flex-1 text-left">
+                      <span class="block">{module.title}</span>
+                      {module.duration && (
+                        <span class="block text-xs text-neutral-500 font-normal mt-0.5">
+                          {module.duration}
+                        </span>
+                      )}
+                    </span>
+                  </span>
+                  <Icon
+                    name="chevron-down"
+                    size={20}
+                    class="flex-shrink-0 text-brand-500 transition-transform duration-200 group-open:rotate-180"
+                  />
+                </summary>
+                <div class="accordion-content">
+                  <p class="mb-4">{module.description}</p>
+                  <ul class="space-y-2" role="list">
+                    {module.lessons.map((lesson) => (
+                      <li class="flex items-start gap-2 text-sm">
+                        <Icon name="play" size={16} class="flex-shrink-0 mt-0.5 text-brand-500" />
+                        <span>{lesson}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </details>
+            ))}
           </div>
-        </details>
+        </section>
       ))}
     </div>
 

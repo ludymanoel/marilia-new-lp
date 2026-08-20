@@ -57,7 +57,7 @@ export const heroData = {
   trustBadges: [
     'Acesso Imediato',
     '7 Dias de Garantia',
-    '12x R$70,07',
+    'R$ 697 à vista',
     '+5.000 Alunas',
   ],
 } as const;
@@ -169,9 +169,9 @@ export const aboutMariliaData = {
 
 export const methodPillarsData = {
   eyebrow: 'O método em 4 pilares',
-  headline: 'Especialista em simplificar — vai virar você.',
+  headline: 'Torne-se especialista em Simplificar a Rotina',
   subheadline:
-    'Quatro passos testados em mais de 5.000 pessoas. Não é força de vontade. É arquitetura da rotina com base na fórmula SONHA.',
+    'Quatro passos testados em mais de 5.000 pessoas. Não é força de vontade. É arquitetura da rotina com base na fórmula SONHATIVIDADE.',
   pillars: [
     {
       number: '01',
@@ -210,7 +210,7 @@ export const methodPillarsData = {
 
 export const whoIsForData = {
   eyebrow: 'Esse método é pra você que…',
-  headline: 'Especialista em simplificar? A gente também é.',
+  headline: 'Precisa Simplificar a Rotina na prática',
   cards: [
     {
       avatar: 'carla',
@@ -231,7 +231,6 @@ export const whoIsForData = {
         '— sem virar a vida do avesso. Em quatro semanas você vai sentir a diferença na energia, no foco e no tempo livre.',
     },
   ],
-  footerCta: 'Se você se reconheceu, continue ↓',
 } as const;
 
 // ============================================================
@@ -242,82 +241,146 @@ export const courseModulesData = {
   eyebrow: 'O que está incluso',
   headline: '8 horas de conteúdo, no seu ritmo, no seu celular ou notebook.',
   subheadline: 'Aulas curtas, ferramentas práticas, aplicação imediata.',
-  modules: [
+  blocks: [
     {
-      number: '01',
-      title: 'Mapeamento',
-      duration: '1h 10min',
-      description: 'Diagnóstico honesto da sua rotina atual — sem julgamento, com clareza.',
-      lessons: [
-        'Por que você não consegue manter uma rotina (e o que fazer)',
-        'Auditoria completa das suas 24 horas',
-        'Identificando seus vazamentos de tempo e energia',
-        'Definindo o que realmente importa pra você',
+      title: 'Autoconhecimento',
+      modules: [
+        {
+          number: '01',
+          title: 'Sonhatividade',
+          duration: '1h 25min',
+          description: 'Do sonho ao plano: a fórmula exclusiva do método.',
+          lessons: [
+            'A diferença entre sonho e objetivo',
+            'A fórmula SONHATIVIDADE (Sonhar, Organizar, Narrar, Haver, Agir)',
+            'Construindo seu mapa de 12 meses',
+            'Como dividir grandes sonhos em ações diárias',
+          ],
+        },
+        {
+          number: '02',
+          title: 'Autoconhecimento',
+          duration: '1h 10min',
+          description: 'Diagnóstico honesto da sua rotina atual — sem julgamento, com clareza.',
+          lessons: [
+            'Por que você não consegue manter uma rotina (e o que fazer)',
+            'Auditoria completa das suas 24 horas',
+            'Identificando seus vazamentos de tempo e energia',
+            'Definindo o que realmente importa pra você',
+          ],
+        },
       ],
     },
     {
-      number: '02',
-      title: 'Sonhatividade',
-      duration: '1h 25min',
-      description: 'Do sonho ao plano: a fórmula exclusiva do método.',
-      lessons: [
-        'A diferença entre sonho e objetivo',
-        'A fórmula SONHA (Sonhar, Organizar, Narrar, Haver, Agir)',
-        'Construindo seu mapa de 12 meses',
-        'Como dividir grandes sonhos em ações diárias',
+      title: 'Planejamento',
+      modules: [
+        {
+          number: '03',
+          title: 'Planejamento a Longo Prazo',
+          duration: undefined,
+          description:
+            'Transforme seus grandes sonhos em um mapa de 12 meses — com direção, sem pressa.',
+          lessons: [
+            'Desenhando seu mapa de 12 meses',
+            'Dividindo grandes sonhos em ações diárias',
+            'Definindo marcos trimestrais realistas',
+            'Conectando o longo prazo à sua rotina atual',
+          ],
+        },
+        {
+          number: '04',
+          title: 'Planejamento de rotina',
+          duration: '1h 40min',
+          description: 'Montando sua rotina sob medida — com espaço pra imprevistos.',
+          lessons: [
+            'O sistema de blocos da Organização Sincera',
+            'Sua rotina ideal em 90 minutos',
+            'Criando seus rituais de início e fim',
+            'Margem para imprevistos (sem culpa)',
+          ],
+        },
+        {
+          number: '05',
+          title: 'Gestão do Tempo',
+          duration: '1h 15min',
+          description: 'Técnicas pra vencer a procrastinação e o perfeccionismo.',
+          lessons: [
+            'Por que procrastinamos (não é preguiça)',
+            'A regra dos 2 minutos',
+            'Foco profundo em tempos curtos',
+            'Como dizer não com elegância',
+          ],
+        },
+        {
+          number: '06',
+          title: 'Funil do Planejamento',
+          duration: undefined,
+          description: 'Filtre compromissos e atividades para manter só o que gera resultado.',
+          lessons: [
+            'O que é o funil do planejamento',
+            'Cortando o que não é essencial',
+            'Ordenando atividades pelo impacto real',
+            'Sobrando espaço para o que importa',
+          ],
+        },
+        {
+          number: '07',
+          title: 'Peneira da priorização',
+          duration: undefined,
+          description: 'Defina o que realmente importa pra você — e proteja seu tempo com elegância.',
+          lessons: [
+            'Definindo o que realmente importa pra você',
+            'Como dizer não com elegância',
+            'Priorizando sem culpa',
+            'Protegendo seu tempo do que não agrega',
+          ],
+        },
       ],
     },
     {
-      number: '03',
-      title: 'Estrutura',
-      duration: '1h 40min',
-      description: 'Montando sua rotina sob medida — com espaço pra imprevistos.',
-      lessons: [
-        'O sistema de blocos da Organização Sincera',
-        'Sua rotina ideal em 90 minutos',
-        'Criando seus rituais de início e fim',
-        'Margem para imprevistos (sem culpa)',
-      ],
-    },
-    {
-      number: '04',
-      title: 'Hábitos',
-      duration: '1h 20min',
-      description: 'Como criar novos hábitos — e manter mesmo quando a motivação acaba.',
-      lessons: [
-        'A ciência do comportamento que ninguém te explicou',
-        'Empilhamento de hábitos na prática',
-        'O que fazer quando você "quebra" o hábito',
-        'Recuperação rápida sem efeito cascata',
-      ],
-    },
-    {
-      number: '05',
-      title: 'Foco',
-      duration: '1h 15min',
-      description: 'Técnicas pra vencer a procrastinação e o perfeccionismo.',
-      lessons: [
-        'Por que procrastinamos (não é preguiça)',
-        'A regra dos 2 minutos',
-        'Foco profundo em tempos curtos',
-        'Como dizer não com elegância',
-      ],
-    },
-    {
-      number: '06',
-      title: 'Manutenção',
-      duration: '1h 10min',
-      description: 'Ajustes contínuos sem culpa — pra vida seguir mudando sem você perder o controle.',
-      lessons: [
-        'Revisões semanais em 15 minutos',
-        'O que mudar quando a vida muda',
-        'Quando (e como) pausar sem recomeçar do zero',
-        'A cultura da melhoria contínua',
+      title: 'Comportamento',
+      modules: [
+        {
+          number: '08',
+          title: 'Comportamento',
+          duration: '1h 20min',
+          description: 'Como criar novos hábitos — e manter mesmo quando a motivação acaba.',
+          lessons: [
+            'A ciência do comportamento que ninguém te explicou',
+            'Empilhamento de hábitos na prática',
+            'O que fazer quando você "quebra" o hábito',
+            'Recuperação rápida sem efeito cascata',
+          ],
+        },
+        {
+          number: '09',
+          title: 'Ação!',
+          duration: undefined,
+          description: 'Da teoria à prática: comece agora e mantenha o ritmo, mesmo com pouco tempo.',
+          lessons: [
+            'A regra dos 2 minutos',
+            'Foco profundo em tempos curtos',
+            'Começando pequeno, agindo hoje',
+            'Mantendo o ritmo quando a motivação oscila',
+          ],
+        },
+        {
+          number: '10',
+          title: 'Agora é com você',
+          duration: '1h 10min',
+          description: 'Ajustes contínuos sem culpa — pra vida seguir mudando sem você perder o controle.',
+          lessons: [
+            'Revisões semanais em 15 minutos',
+            'O que mudar quando a vida muda',
+            'Quando (e como) pausar sem recomeçar do zero',
+            'A cultura da melhoria contínua',
+          ],
+        },
       ],
     },
   ],
   totalDuration: '8 horas',
-  cta: 'Quero acesso aos 6 módulos',
+  cta: 'Quero acesso aos 10 módulos',
 } as const;
 
 // ============================================================
@@ -332,7 +395,6 @@ export const bonusesData = {
     {
       badge: 'Bônus 1',
       title: 'Aulas com parceiros',
-      value: 'R$ 497',
       description:
         'Aprenda a calcular sua hora de trabalho emocional com a orientação de Lucas Veríssimo, mentor especializado em profissionais autônomos e negócios criativos. Receba dicas valiosas sobre organização de home office em uma aula exclusiva com Paula Furlan, uma personal organizer especialista no setor de luxo. Além disso, explore estratégias mentais para realizar o que precisa com o método Ammar de Tássia Garcia, psicóloga e expert em mentalidade.',
       includes: [
@@ -343,19 +405,17 @@ export const bonusesData = {
     },
     {
       badge: 'Bônus 2',
-      title: 'Planners Organização Sincera',
-      value: 'R$ 197',
+      title: 'Ebook do Planner Organização Sincera',
       description:
-        'Aprenda como utilizar os Planners Organização Sincera: físico ou digital. Veja como essas ferramentas podem facilitar a execução do seu processo, seguindo o passo a passo que você aprenderá no curso.',
+        'Aprenda como utilizar o Ebook do Planner Organização Sincera: físico ou digital. Veja como essa ferramenta pode facilitar a execução do seu processo, seguindo o passo a passo que você aprenderá no curso.',
       includes: [
-        'Versão digital (Notion + PDF)',
-        'Versão física pra imprimir',
+        'Versão digital (PDF)',
+        'Versão para imprimir',
         'Templates de revisão semanal e mensal',
         'Acesso vitalício aos arquivos',
       ],
     },
   ],
-  totalValue: 'R$ 694 em bônus inclusos',
 } as const;
 
 // ============================================================
@@ -404,17 +464,18 @@ export const offerData = {
   eyebrow: 'Resumo do que você vai receber',
   headline: 'O CURSO PRODUTIVIDADE SINCERA É COMPROVADO, SEGURO E APENAS COM O QUE REALMENTE IMPORTA.',
   subheadline: '',
-  anchor: 'DE R$ 1.497 POR',
+  anchor: 'DE R$ 1.497 POR APENAS',
   price: {
-    main: '12x R$ 70,07',
-    secondary: 'ou R$ 697 à vista',
+    main: 'R$ 697',
+    secondary: 'ou 12x R$ 70,07',
   },
   includes: [
-    'Metodologia Organização Sincera testada e aprovada por mais de 5.000 pessoas',
-    'Estratégias com a fórmula da Sonhatividade, que vão desde o desenho dos seus sonhos e planejamento de longo prazo até uma nova rotina aplicada à sua realidade de hoje',
-    'Passo a passo de como percorrer o caminho da gestão do tempo com as atividades necessárias, na ordem exata para você fluir no seu processo',
-    'Estratégias para criação de novos Hábitos, de como vencer a Procrastinação e corrigir seu comportamento para atingir seus objetivos',
-    '7 dias para testar ou seu dinheiro de volta',
+    'Metodologia Organização Sincera testada e aprovada por mais de 5 mil pessoas;',
+    'Estratégias com a fórmula da Sonhatividade, que vão desde o desenho dos seus sonhos e planejamento de longo prazo até uma nova rotina aplicada à sua realidade de hoje;',
+    'Passo a passo de como percorrer o caminho da gestão do tempo com as atividades necessárias, na ordem exata para você fluir no seu processo;',
+    'Estratégias para criação de novos Hábitos, de como vencer a Procrastinação e corrigir seu comportamento para atingir seus objetivos;',
+    'Dois super Bônus inclusos para turbinar o seu progresso',
+    '7 dias para testar ou seu dinheiro de volta.',
   ],
   cta: {
     text: 'COMPRAR AGORA',
@@ -501,7 +562,8 @@ export const finalCtaData = {
 
 export type HeroData = typeof heroData;
 export type PainPoint = (typeof painPointsData.cards)[number];
-export type Module = (typeof courseModulesData.modules)[number];
+export type CourseBlock = (typeof courseModulesData.blocks)[number];
+export type Module = (typeof courseModulesData.blocks)[number]['modules'][number];
 export type Testimonial = (typeof videosTestimonialsData)[number];
 export type Pillar = (typeof methodPillarsData.pillars)[number];
 export type Bonus = (typeof bonusesData.bonuses)[number];

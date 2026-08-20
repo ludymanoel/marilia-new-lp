@@ -42,3 +42,6 @@ docs/
 
 # Memória persistente de sessões (não versionar)
 .persistent-memory.md
+
+# Mídia bruta do cliente (grande demais para versionar — ex: "vídeo anuncio 50 off.mov")
+*.mov

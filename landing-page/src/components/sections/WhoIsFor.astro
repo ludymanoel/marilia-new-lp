@@ -19,11 +19,8 @@ import { whoIsForData } from '../../data/content';
     class="grid md:grid-cols-3 gap-6 mt-12 md:mt-16 stagger"
     role="list"
   >
-    {whoIsForData.cards.map((card, idx) => (
+    {whoIsForData.cards.map((card) => (
       <li class="card card--hover border border-neutral-100 reveal">
-        <div class="text-xs font-semibold uppercase tracking-widest text-brand-600 mb-3">
-          Persona 0{idx + 1}
-        </div>
         <p class="text-neutral-700 leading-relaxed">
           <span class="font-semibold text-neutral-900">{card.title}</span>
           {card.description.replace(card.title, '')}
@@ -31,8 +28,4 @@ import { whoIsForData } from '../../data/content';
       </li>
     ))}
   </ul>
-
-  <p class="text-center mt-10 md:mt-12 text-neutral-600 italic reveal">
-    {whoIsForData.footerCta}
-  </p>
 </SectionWrapper>

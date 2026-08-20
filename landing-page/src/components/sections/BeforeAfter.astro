@@ -4,9 +4,10 @@
  * Reforça visualmente o que muda na rotina da pessoa.
  */
 import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
 import SectionWrapper from '../ui/SectionWrapper.astro';
 import SectionHeading from '../ui/SectionHeading.astro';
-import { beforeAfterData } from '../../data/content';
+import { beforeAfterData, siteConfig } from '../../data/content';
 ---
 
 <SectionWrapper theme="light" ariaLabelledby="before-after-heading">
@@ -62,8 +63,15 @@ import { beforeAfterData } from '../../data/content';
   </div>
 
   <div class="text-center mt-12 reveal">
-    <p class="text-lg font-semibold text-brand-700">
+    <Button
+      variant="primary"
+      size="lg"
+      href={siteConfig.checkoutUrl}
+      external={true}
+      showArrow={false}
+      data-track-cta="before_after_cta"
+    >
       {beforeAfterData.cta}
-    </p>
+    </Button>
   </div>
 </SectionWrapper>

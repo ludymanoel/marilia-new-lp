@@ -187,6 +187,42 @@ function generateTransactionId(): string {
 }
 
 /**
+ * Dispara evento de exibição do modal de desconto (50% OFF).
+ * Chamado quando o DiscountBanner abre.
+ */
+export function trackDiscountModalView(): void {
+  if (typeof window === 'undefined') return;
+
+  // Meta Pixel — evento custom de exibição
+  if (window.fbq) {
+    window.fbq('trackCustom', 'DiscountModalView', {
+      content_name: 'Produtividade Sincera',
+      content_category: 'Curso Online',
+    });
+  }
+
+  // TikTok Pixel — ViewContent (guardar se tiktok pixel presente)
+  if (window.ttq && typeof window.ttq.track === 'function') {
+    window.ttq.track('ViewContent', {
+      content_name: 'Produtividade Sincera',
+      value: 697.0,
+      currency: 'BRL',
+    });
+  }
+
+  // GA4 — view_promotion
+  if (window.gtag) {
+    window.gtag('event', 'view_promotion', {
+      creative_name: 'discount_modal',
+      promotion_id: '50off_modal',
+      promotion_name: '50% OFF — Todos os Cursos',
+      value: 697.0,
+      currency: 'BRL',
+    });
+  }
+}
+
+/**
  * Atualiza todos os links de checkout da página com UTMs.
  * Chamado uma vez após DOMContentLoaded.
  */

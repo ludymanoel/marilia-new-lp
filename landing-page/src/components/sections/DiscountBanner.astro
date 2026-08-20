@@ -1,0 +1,271 @@
+---
+/**
+ * DiscountBanner — Modal de 50% OFF com vídeo.
+ *
+ * COMPORTAMENTO:
+ * - Abre 10 segundos após o load da página (1ª vez por sessão via sessionStorage)
+ * - O link do CTA EXISTE no HTML estático (necessário para o hydrateCheckoutLinks
+ *   do tracking.ts injetar UTMs antes de qualquer interação)
+ * - O <video> é montado no DOM APENAS quando o modal abre (lazy, sem impacto no LCP)
+ * - Se prefers-reduced-motion, o vídeo NÃO faz autoplay
+ * - Fechável com X, ESC ou clique no backdrop
+ * - Focus trap (Tab circula dentro do modal) + retorno de foco ao fechar
+ */
+import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
+import { siteConfig } from '../../data/content';
+---
+
+<div
+  id="discount-banner"
+  class="fixed inset-0 z-50 hidden overflow-y-auto bg-neutral-900/70 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="discount-banner-title"
+  aria-hidden="true"
+  data-discount-banner
+>
+  <div class="min-h-full flex items-center justify-center p-4">
+    <div
+      class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden relative my-auto"
+      data-discount-banner-content
+    >
+      <button
+        type="button"
+        class="absolute top-3 right-3 z-10 w-9 h-9 rounded-full bg-white/90 hover:bg-white shadow flex items-center justify-center transition-colors"
+        aria-label="Fechar"
+        data-discount-banner-close
+      >
+        <Icon name="x" size={18} class="text-neutral-800" />
+      </button>
+
+      <!-- Slot do vídeo (retrato 9:16) — preenchido via JS apenas quando o modal abre -->
+      <div
+        class="aspect-[9/16] max-h-[70vh] max-w-[300px] w-full mx-auto bg-neutral-900"
+        data-discount-video-slot
+        aria-hidden="true"
+      ></div>
+
+      <div class="p-6 text-center">
+        <h2
+          id="discount-banner-title"
+          class="text-2xl md:text-3xl font-display font-bold text-brand-800 mb-4"
+        >
+          50% OFF Em todos os Cursos
+        </h2>
+
+        <Button
+          variant="primary"
+          href={siteConfig.checkoutUrl}
+          external={true}
+          size="lg"
+          class="w-full"
+          data-track-cta="discount_modal_cta"
+        >
+          Quero Garantir o meu Desconto
+        </Button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  #discount-banner[data-state="open"] {
+    display: flex !important;
+    animation: discount-fade-in 300ms var(--ease-out-quart);
+  }
+  #discount-banner[data-state="open"] [data-discount-banner-content] {
+    animation: discount-scale-in 400ms var(--ease-out-quart);
+  }
+  @keyframes discount-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes discount-scale-in {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+</style>
+
+<script>
+  import { trackDiscountModalView } from '../../scripts/tracking';
+
+  const STORAGE_KEY = 'mc_discount_banner_shown';
+  const OPEN_DELAY_MS = 10_000;
+  const VIDEO_SRC = '/videos/anuncio-50-off.mp4';
+  const VIDEO_POSTER = '/videos/anuncio-50-off-poster.jpg';
+
+  let previouslyFocused: HTMLElement | null = null;
+
+  function hasShownThisSession(): boolean {
+    try {
+      return sessionStorage.getItem(STORAGE_KEY) === '1';
+    } catch {
+      return false;
+    }
+  }
+
+  function markShownThisSession(): void {
+    try {
+      sessionStorage.setItem(STORAGE_KEY, '1');
+    } catch { /* ignore */ }
+  }
+
+  function prefersReducedMotion(): boolean {
+    return (
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    );
+  }
+
+  function mountVideo(slot: HTMLElement): void {
+    if (slot.querySelector('video')) return;
+
+    const reducedMotion = prefersReducedMotion();
+    const video = document.createElement('video');
+    video.autoplay = !reducedMotion;
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    video.controls = true;
+    video.preload = 'none';
+    video.poster = VIDEO_POSTER;
+    video.className = 'w-full h-full object-contain';
+
+    const source = document.createElement('source');
+    source.src = VIDEO_SRC;
+    source.type = 'video/mp4';
+    video.appendChild(source);
+
+    slot.appendChild(video);
+
+    // Autoplay só quando NÃO há prefers-reduced-motion
+    if (!reducedMotion) {
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {
+          // Alguns browsers exigem muted antes de play — já está muted; tenta de novo
+          video.muted = true;
+          video.play().catch(() => { /* autoplay bloqueado — usuário pode dar play */ });
+        });
+      }
+    }
+  }
+
+  function unmountVideo(slot: HTMLElement): void {
+    const video = slot.querySelector('video');
+    if (video) {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+    }
+    slot.innerHTML = '';
+  }
+
+  function openDiscountBanner(): void {
+    const el = document.getElementById('discount-banner');
+    if (!el) return;
+
+    const slot = el.querySelector<HTMLElement>('[data-discount-video-slot]');
+    if (slot) mountVideo(slot);
+
+    // Guarda o elemento focado para devolver o foco ao fechar
+    previouslyFocused = document.activeElement as HTMLElement | null;
+
+    el.dataset.state = 'open';
+    el.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    markShownThisSession();
+
+    // Tracking de exibição
+    trackDiscountModalView();
+
+    // Foco inicial no botão de fechar
+    const closeBtn = el.querySelector<HTMLElement>('[data-discount-banner-close]');
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeDiscountBanner(): void {
+    const el = document.getElementById('discount-banner');
+    if (!el) return;
+
+    const slot = el.querySelector<HTMLElement>('[data-discount-video-slot]');
+    if (slot) unmountVideo(slot);
+
+    el.dataset.state = 'closed';
+    el.setAttribute('aria-hidden', 'true');
+
+    // Só libera o scroll se nenhum outro modal de conversão estiver aberto
+    // (ex: ExitIntent travou o body antes de este modal abrir)
+    const otherOpen = document.querySelector<HTMLElement>(
+      '[data-state="open"][role="dialog"]:not(#discount-banner)'
+    );
+    if (!otherOpen) document.body.style.overflow = '';
+
+    // Retorna o foco ao elemento que abriu o modal (ou estava ativo antes)
+    if (previouslyFocused && typeof previouslyFocused.focus === 'function') {
+      previouslyFocused.focus();
+    }
+    previouslyFocused = null;
+  }
+
+  function initDiscountBanner(): void {
+    if (hasShownThisSession()) return;
+
+    const el = document.getElementById('discount-banner');
+    if (!el) return;
+
+    // Fechar com ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && el.dataset.state === 'open') {
+        closeDiscountBanner();
+      }
+    });
+
+    // Focus trap: Tab circula dentro do modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab' || el.dataset.state !== 'open') return;
+      const focusable = Array.from(
+        el.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), video[controls], [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((node) => node.offsetParent !== null || node === document.activeElement);
+
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
+
+    // Fechar com clique no backdrop ou botões de fechar
+    el.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+
+      // Clique fora do card (backdrop inclui o wrapper min-h-full) fecha o modal
+      if (!target.closest('[data-discount-banner-content]')) {
+        closeDiscountBanner();
+        return;
+      }
+
+      // Clique no botão de fechar (X) dentro do card
+      if (
+        target.dataset.discountBannerClose !== undefined ||
+        target.closest('[data-discount-banner-close]')
+      ) {
+        closeDiscountBanner();
+      }
+    });
+
+    // Abrir após 10s (não atrapalhar LCP nem UX inicial)
+    setTimeout(openDiscountBanner, OPEN_DELAY_MS);
+  }
+
+  initDiscountBanner();
+</script>

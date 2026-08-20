@@ -143,7 +143,13 @@ import { siteConfig } from '../../data/content';
     if (!el) return;
     el.dataset.state = 'closed';
     el.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
+
+    // Só libera o scroll se nenhum outro modal de conversão estiver aberto
+    // (ex: DiscountBanner aberto — fechar o ExitIntent não pode destravar o body)
+    const otherOpen = document.querySelector<HTMLElement>(
+      '[data-state="open"][role="dialog"]:not(#exit-intent)'
+    );
+    if (!otherOpen) document.body.style.overflow = '';
     markDismissed();
   }
 
