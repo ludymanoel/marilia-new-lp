@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background circle with gradient -->
+  <defs>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#065F46"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCC103"/>
+      <stop offset="100%" stop-color="#B59102"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Outer gold ring -->
+  <circle cx="100" cy="100" r="95" fill="url(#goldGrad)" stroke="#000154" stroke-width="2"/>
+
+  <!-- Inner white ring -->
+  <circle cx="100" cy="100" r="82" fill="#FFFFFF"/>
+
+  <!-- Main green circle -->
+  <circle cx="100" cy="100" r="78" fill="url(#badgeGrad)"/>
+
+  <!-- Inner dotted ring -->
+  <circle cx="100" cy="100" r="68" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-dasharray="3,3" opacity="0.6"/>
+
+  <!-- Shield icon -->
+  <g transform="translate(100, 88)">
+    <path d="M0,-25 L20,-15 L20,5 Q20,25 0,32 Q-20,25 -20,5 L-20,-15 Z" fill="#FFFFFF" stroke="#065F46" stroke-width="1.5"/>
+    <path d="M-10,0 L-3,8 L12,-10" fill="none" stroke="#065F46" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- "7" big number -->
+  <text x="100" y="148" text-anchor="middle" font-family="'Config Rounded', 'Roboto', sans-serif" font-weight="700" font-size="32" fill="#FCC103">7</text>
+
+  <!-- Small text curved at bottom -->
+  <path id="bottomArc" d="M 35,135 A 75,75 0 0 0 165,135" fill="none"/>
+  <text font-family="'Config Rounded', 'Roboto', sans-serif" font-weight="700" font-size="10" fill="#FFFFFF" letter-spacing="2">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">DIAS DE GARANTIA</textPath>
+  </text>
+
+  <!-- Top text curved -->
+  <path id="topArc" d="M 35,65 A 75,75 0 0 1 165,65" fill="none"/>
+  <text font-family="'Config Rounded', 'Roboto', sans-serif" font-weight="700" font-size="9" fill="#FFFFFF" letter-spacing="1.5">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">100% SEGURO</textPath>
+  </text>
+</svg>
