@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quiz da Marília Cordeiro para entender sua relação com organização e produtividade sincera.">
+  <title>Quiz | Marília Cordeiro</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="quiz">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Marília Cordeiro - início">
+        <img class="brand-logo" src="assets/images/logo-mc-primary.png" alt="Marília Cordeiro" width="868" height="260">
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section id="quiz" class="section" aria-labelledby="quiz-section-title">
+      <div class="container editorial-shell">
+        <div id="live-region" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+        <div class="quiz-head">
+          <h1 id="quiz-section-title">descubra por onde começar agora.</h1>
+          <p class="lead">Responda uma pergunta por vez. Seja sincera: a ideia é encontrar o primeiro ajuste possível, não uma rotina perfeita.</p>
+        </div>
+
+        <div id="quiz-screen" class="screen is-entering">
+          <div class="quiz-layout">
+            <div class="quiz-side-panel">
+              <aside class="progress-wrap" aria-label="progresso do quiz">
+                <div class="progress-label"><span id="progress-text">pergunta 1 de 4</span><span id="progress-percent">0%</span></div>
+                <div class="bar" aria-hidden="true"><span id="progress-bar"></span></div>
+                <ol id="checklist" class="checklist"></ol>
+              </aside>
+              <aside class="quiz-mentor-card" aria-label="Marília acompanha este diagnóstico">
+                <img src="assets/images/marilia-perfil.webp" alt="Retrato de Marília Cordeiro" width="320" height="320">
+                <div><strong>Marília Cordeiro</strong><span>responda com sinceridade: a ideia é encontrar o primeiro ajuste possível, não uma rotina perfeita.</span></div>
+              </aside>
+            </div>
+            <div class="question-panel">
+              <button class="btn btn--ghost btn--small back-btn" type="button" data-back>voltar</button>
+              <h2 id="question-title" tabindex="-1"></h2>
+              <div id="options" class="options" role="group" aria-labelledby="question-title"></div>
+              <p id="message" class="message" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="quiz-modal" class="quiz-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="quiz-modal__card">
+      <p class="eyebrow">antes de começar</p>
+      <h2 id="modal-title">como funciona o diagnóstico</h2>
+      <p>Você vai responder 4 perguntas rápidas. Escolha a alternativa que mais parece com o seu momento atual — sem tentar acertar.</p>
+      <p>No fim, suas respostas serão salvas neste navegador e você será direcionada para uma página de resultado personalizada.</p>
+      <div class="actions"><button class="btn" type="button" data-modal-start>entendi, começar</button></div>
+    </div>
+  </div>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

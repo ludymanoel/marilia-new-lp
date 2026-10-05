@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Resultado personalizado do diagnóstico da Marília Cordeiro, com vídeo, oferta e próximos passos.">
+  <title>Resultado do Quiz | Marília Cordeiro</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body data-page="resultado">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Marília Cordeiro - início">
+        <img class="brand-logo" src="assets/images/logo-mc-primary.png" alt="Marília Cordeiro" width="868" height="260">
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section id="resultado" class="section result-section" aria-labelledby="video-title">
+      <div class="container result-shell">
+        <div id="final-screen" class="screen">
+          <div class="final-grid">
+            <section class="media-column" aria-label="diagnóstico e vídeo">
+              <p class="eyebrow">O resultado do seu diagnóstico diz que o seu proximo passo é...</p>
+              <h1 id="video-title"></h1>
+              <p id="dynamic-copy" class="dynamic-copy"></p>
+              <div id="recommendation-container"></div>
+              <div id="video-container" class="video-frame"></div>
+            </section>
+            <aside id="oferta" class="offer" aria-labelledby="offer-title">
+              <p id="offer-bridge" class="offer-bridge"></p>
+              <div class="offer-hero">
+                <h2 id="offer-title"></h2>
+                <div class="price-panel" aria-label="condição de investimento">
+                  <p id="offer-price" class="price"></p>
+                  <p id="offer-old-price" class="old-price"></p>
+                  <p id="offer-anchor" class="anchor"></p>
+                  <p id="offer-sub-anchor" class="sub-anchor"></p>
+                </div>
+              </div>
+              <div><strong>Você recebe:</strong><ul id="offer-includes" class="offer-includes"></ul></div>
+              <div class="offer-proof" aria-label="por que este é o próximo passo"><p id="method-line" class="method-line"></p><p id="cost-line" class="cost-line"></p></div>
+              <div class="actions"><a id="offer-link" class="btn" href="https://pay.kiwify.com.br/vLg5OEC" target="_blank" rel="noopener">COMPRAR AGORA</a></div>
+              <div id="payment-methods" class="payment-methods"></div>
+              <div id="extra-blocks" class="scroll-blocks" aria-label="informações complementares"></div>
+              <details id="answers-debug" class="answers-debug" hidden><summary>respostas registradas</summary><pre id="answers-output"></pre></details>
+            </aside>
+          </div>
+          <div id="post-offer-sections" class="post-offer-sections"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-columns">
+        <div>
+          <img class="footer-logo" src="assets/images/logo-white.svg" alt="Marília Cordeiro" width="868" height="260" loading="lazy">
+          <p id="footer-description" class="footer-desc"></p>
+        </div>
+        <nav class="footer-nav" aria-label="Links institucionais"><h3>Institucional</h3><ul id="footer-institutional"></ul></nav>
+        <nav class="footer-nav" aria-label="Links legais"><h3>Legal</h3><ul id="footer-legal"></ul></nav>
+        <nav class="footer-nav" aria-label="Redes sociais"><h3>Redes</h3><ul id="footer-social" class="social-links"></ul></nav>
+      </div>
+      <div class="footer-bottom"><span id="footer-copyright"></span><span id="footer-rights"></span></div>
+    </div>
+  </footer>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
